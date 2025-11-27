@@ -1,33 +1,3 @@
 name = "inbox-note-hub"
 type = "javascript"
-account_id = ""
-workers_dev = true
-route = ""
-zone_id = ""
 compatibility_date = "2024-01-01"
-
-# 配置 Pages 特定选项
-[env.production]
-name = "inbox-note-hub-prod"
-routes = [
-  { pattern = "card.gudong.site", zone_name = "gudong.site" }
-]
-
-# 静态资源缓存策略
-[build]
-command = "npm run build"
-cwd = "./"
-watch_paths = ["src/**/*.ts", "src/**/*.tsx", "cards/**/*"]
-
-[env.production.build]
-command = "npm run build"
-cwd = "./"
-
-# 构建输出配置
-[build.upload]
-format = "service-worker"
-
-[build.upload.rules]
-type = "CompiledContentType"
-globs = ["**/*.wasm"]
-fallthrough = true
