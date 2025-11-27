@@ -1,7 +1,6 @@
 import React from 'react';
 import { Note } from '../types';
 import { useApp } from '../context';
-import { ICONS } from '../constants';
 
 interface CardProps {
   note: Note;
