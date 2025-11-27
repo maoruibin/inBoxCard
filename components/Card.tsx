@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Note } from '../types';
 import { useApp } from '../context';
-import { generateInsight } from '../services/geminiService';
 import { ICONS } from '../constants';
 
 interface CardProps {
@@ -10,24 +9,6 @@ interface CardProps {
 
 export const Card: React.FC<CardProps> = ({ note }) => {
   const { language } = useApp();
-  const [insight, setInsight] = useState<string | null>(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-
-  const handleAiAnalyze = async () => {
-    if (insight) return; // Already generated
-    setLoading(true);
-    setError(null);
-    try {
-      const result = await generateInsight(note.content);
-      setInsight(result);
-    } catch (err: any) {
-      // In a real app, prompt for API key here
-      setError("Set API Key in env to use AI.");
-    } finally {
-      setLoading(false);
-    }
-  };
 
   return (
     <div className="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-sm border border-slate-100 dark:border-slate-700/50 hover:shadow-md transition-shadow flex flex-col h-full group">
@@ -55,33 +36,7 @@ export const Card: React.FC<CardProps> = ({ note }) => {
             </span>
           ))}
         </div>
-        
-        <button 
-          onClick={handleAiAnalyze}
-          disabled={loading}
-          className="opacity-0 group-hover:opacity-100 transition-opacity text-blue-500 hover:text-blue-600 text-sm flex items-center gap-1"
-          title="Analyze with AI"
-        >
-          <ICONS.Sparkles size={14} />
-          {loading ? 'Thinking...' : 'AI Insight'}
-        </button>
       </div>
-
-      {/* AI Insight Box */}
-      {(insight || error) && (
-        <div className="mt-4 bg-blue-50 dark:bg-blue-900/20 p-3 rounded-lg text-sm text-slate-700 dark:text-slate-300 animate-fadeIn">
-          {error ? (
-             <span className="text-red-500">{error}</span>
-          ) : (
-             <>
-               <strong className="block text-blue-700 dark:text-blue-400 mb-1 flex items-center gap-1">
-                 <ICONS.Sparkles size={12}/> Gemini Insight
-               </strong>
-               {insight}
-             </>
-          )}
-        </div>
-      )}
     </div>
   );
 };
