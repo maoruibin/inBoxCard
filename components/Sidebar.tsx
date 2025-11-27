@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { CATEGORIES, ICONS } from '../constants';
 import { useApp } from '../context';
 import { CategoryId } from '../types';
@@ -14,7 +13,6 @@ interface SidebarProps {
 export const Sidebar: React.FC<SidebarProps> = ({ selectedCategory, onSelectCategory, isOpen, onClose }) => {
   const { language } = useApp();
   const [showPromo, setShowPromo] = useState(true);
-  const navigate = useNavigate();
 
   return (
     <>
