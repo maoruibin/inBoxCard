@@ -25,12 +25,12 @@ export const Sidebar: React.FC<SidebarProps> = ({ selectedCategory, onSelectCate
       <div className={`
         fixed top-0 left-0 bottom-0 w-64 bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 
         transform transition-transform duration-300 ease-in-out z-30
-        md:translate-x-0 md:static md:h-screen
+        md:translate-x-0 md:static md:h-screen flex flex-col
         ${isOpen ? 'translate-x-0' : '-translate-x-full'}
       `}>
-        <div className="p-6 h-full flex flex-col">
-          <div className="flex items-center space-x-2 mb-10 text-slate-800 dark:text-white">
-            <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white font-bold">
+        <div className="p-6 h-full flex flex-col overflow-y-auto custom-scrollbar">
+          <div className="flex items-center space-x-2 mb-8 text-slate-800 dark:text-white flex-shrink-0">
+            <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white font-bold shadow-blue-500/20 shadow-lg">
               i
             </div>
             <h1 className="text-xl font-bold tracking-tight">inBox Hub</h1>
@@ -77,9 +77,27 @@ export const Sidebar: React.FC<SidebarProps> = ({ selectedCategory, onSelectCate
             </div>
           </nav>
 
-          <div className="mt-auto pt-6 border-t border-slate-100 dark:border-slate-800">
-             <div className="text-xs text-slate-400 text-center">
-               In Memory of the Code
+          <div className="mt-6 pt-6 border-t border-slate-100 dark:border-slate-800 flex-shrink-0">
+             {/* GongZhongHao Promo */}
+             <div className="bg-slate-50 dark:bg-slate-800/50 p-4 rounded-2xl mb-4 border border-slate-100 dark:border-slate-700/50">
+                <p className="text-xs font-bold text-slate-700 dark:text-slate-200 mb-3 flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                  关注公众号：咕咚同学
+                </p>
+                <div className="bg-white p-2 rounded-lg shadow-sm mb-3">
+                   <img 
+                    src="https://gudong.s3.bitiful.net/asset/gongzhonghao.jpg" 
+                    alt="咕咚同学" 
+                    className="w-full rounded-md aspect-square object-cover"
+                  />
+                </div>
+                <p className="text-[10px] text-slate-500 dark:text-slate-400 text-center leading-relaxed">
+                  回复 <b className="text-blue-600 dark:text-blue-400">Card</b> 获取最新动态<br/>与共建计划
+                </p>
+             </div>
+
+             <div className="text-xs text-slate-300 dark:text-slate-600 text-center font-mono">
+               Designed by inBox
              </div>
           </div>
         </div>
