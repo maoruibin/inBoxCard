@@ -29,6 +29,15 @@ export const Home: React.FC<HomeProps> = ({ selectedCategory }) => {
             ? '探索精粹，一键收纳。' 
             : 'Curated knowledge, instantly captured.'}
         </p>
+        <div className="mt-3">
+          <button
+            onClick={() => navigate('/contribute')}
+            className="inline-flex items-center gap-1.5 text-sm font-semibold text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 hover:underline"
+          >
+            {language === 'zh' ? '想贡献卡片？查看贡献指南' : 'Want to contribute? See the guide'}
+            <ICONS.ExternalLink size={12} />
+          </button>
+        </div>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">

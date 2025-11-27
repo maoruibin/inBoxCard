@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { HashRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { HashRouter, Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 import { Sidebar } from './components/Sidebar';
 import { Home } from './pages/Home';
 import { CollectionDetail } from './pages/CollectionDetail';
+import { Contribute } from './pages/Contribute';
 import { AppProvider, useApp } from './context';
 import { CategoryId } from './types';
 import { ICONS } from './constants';
@@ -11,6 +12,7 @@ const MainLayout: React.FC = () => {
   const { theme, toggleTheme, language, setLanguage } = useApp();
   const [selectedCategory, setSelectedCategory] = useState<CategoryId | 'all'>('all');
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const navigate = useNavigate();
 
   return (
     <div className="flex h-screen overflow-hidden bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-slate-100 font-sans transition-colors duration-200">
@@ -18,7 +20,7 @@ const MainLayout: React.FC = () => {
       {/* Sidebar */}
       <Sidebar 
         selectedCategory={selectedCategory} 
-        onSelectCategory={setSelectedCategory} 
+        onSelectCategory={(id) => { setSelectedCategory(id); navigate('/'); }} 
         isOpen={isSidebarOpen}
         onClose={() => setIsSidebarOpen(false)}
       />
@@ -59,6 +61,15 @@ const MainLayout: React.FC = () => {
                <ICONS.ExternalLink size={14} />
              </a>
 
+             <a
+               href="#/contribute"
+               className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-400 transition-colors text-xs font-medium"
+               title={language === 'zh' ? '贡献指南' : 'Contribute Guide'}
+             >
+               <ICONS.Info size={14} />
+               <span>{language === 'zh' ? '贡献指南' : 'Contribute'}</span>
+             </a>
+
              <div className="h-4 w-[1px] bg-slate-200 dark:bg-slate-700 mx-1"></div>
 
              <button 
@@ -82,6 +93,7 @@ const MainLayout: React.FC = () => {
           <Routes>
             <Route path="/" element={<Home selectedCategory={selectedCategory} />} />
             <Route path="/collection/:id" element={<CollectionDetail />} />
+            <Route path="/contribute" element={<Contribute />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </main>

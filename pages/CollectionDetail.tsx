@@ -145,15 +145,24 @@ export const CollectionDetail: React.FC = () => {
                    ? '这段内容采用“时间戳笔记”格式。复制下方内容后，打开 inBox App 首页右上角菜单，选择「导入笔记」-「时间戳笔记」，App 将自动识别并将其拆分为多张独立的卡片笔记。' 
                    : 'This content uses the "Timestamp Note" format. Copy the content below, open the inBox App menu, select "Import Notes" -> "Timestamp Note". The app will automatically parse and create multiple card notes for you.'}
                </p>
-               <a 
-                 href="https://doc.gudong.site/inbox/time_note.html" 
-                 target="_blank" 
-                 rel="noopener noreferrer"
-                 className="inline-flex items-center gap-1 text-sm font-semibold text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 hover:underline animate-pulse-slow"
-               >
-                 {language === 'zh' ? '查看详细图文教程' : 'View Detailed Tutorial'}
-                 <ICONS.ExternalLink size={12} />
-               </a>
+              <a 
+                href="https://doc.gudong.site/inbox/time_note.html" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 text-sm font-semibold text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 hover:underline animate-pulse-slow"
+              >
+                {language === 'zh' ? '查看详细图文教程' : 'View Detailed Tutorial'}
+                <ICONS.ExternalLink size={12} />
+              </a>
+              <div className="mt-2">
+                <a
+                  href="#/contribute"
+                  className="inline-flex items-center gap-1 text-sm font-semibold text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 hover:underline"
+                >
+                  {language === 'zh' ? '参与贡献（站内指南）' : 'Contribute (in-app guide)'}
+                  <ICONS.Info size={12} />
+                </a>
+              </div>
              </div>
           </div>
 

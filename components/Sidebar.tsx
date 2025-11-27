@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { CATEGORIES, ICONS } from '../constants';
 import { useApp } from '../context';
 import { CategoryId } from '../types';
@@ -13,6 +14,7 @@ interface SidebarProps {
 export const Sidebar: React.FC<SidebarProps> = ({ selectedCategory, onSelectCategory, isOpen, onClose }) => {
   const { language } = useApp();
   const [showPromo, setShowPromo] = useState(true);
+  const navigate = useNavigate();
 
   return (
     <>
@@ -37,7 +39,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ selectedCategory, onSelectCate
               alt="inBox Logo" 
               className="w-8 h-8 object-contain"
             />
-            <h1 className="text-xl font-bold tracking-tight">inBox Hub</h1>
+            <h1 className="text-xl font-bold tracking-tight">inBox Card</h1>
           </div>
         </div>
 
@@ -82,6 +84,16 @@ export const Sidebar: React.FC<SidebarProps> = ({ selectedCategory, onSelectCate
                 );
               })}
             </div>
+            <div className="my-4 border-t border-slate-100 dark:border-slate-800/50" />
+            <button
+              onClick={() => { navigate('/contribute'); onClose(); }}
+              className="w-full flex items-center space-x-3 px-4 py-3 rounded-xl transition-all text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50"
+            >
+              <span className="w-5 h-5 flex items-center justify-center">
+                <ICONS.Info size={18} />
+              </span>
+              <span>{language === 'zh' ? '参与贡献' : 'Contribute'}</span>
+            </button>
           </nav>
         </div>
 
@@ -126,7 +138,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ selectedCategory, onSelectCate
            </a>
 
            <div className="text-xs text-slate-300 dark:text-slate-600 text-center font-mono">
-             Designed by inBox
+             Designed by Gemini&咕咚
            </div>
         </div>
       </div>
