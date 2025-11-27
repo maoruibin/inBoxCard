@@ -6,6 +6,7 @@ import { ICONS } from '../constants';
 import { Card } from '../components/Card';
 import { Note } from '../types';
 import { parseTimestampNotes } from '../utils/parser';
+import { loadNoteContent } from '../utils/loader';
 
 export const CollectionDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -23,11 +24,7 @@ export const CollectionDetail: React.FC = () => {
   useEffect(() => {
     if (collection) {
       setLoading(true);
-      fetch(collection.filePath)
-        .then(res => {
-          if (!res.ok) throw new Error('Failed to load notes file');
-          return res.text();
-        })
+      loadNoteContent(collection.filePath)
         .then(text => {
           setRawContent(text);
           const parsedNotes = parseTimestampNotes(text);

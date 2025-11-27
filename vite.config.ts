@@ -3,7 +3,6 @@
 
 import { defineConfig, loadEnv } from 'vite';
 import react from '@vitejs/plugin-react';
-import { viteStaticCopy } from 'vite-plugin-static-copy';
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
@@ -14,14 +13,6 @@ export default defineConfig(({ mode }) => {
   return {
     plugins: [
       react(),
-      viteStaticCopy({
-        targets: [
-          {
-            src: 'cards',
-            dest: '' // This copies 'cards' folder to the root of 'dist' so fetch('/cards/...') works
-          }
-        ]
-      })
     ],
     define: {
       // Security fix: Only expose specific keys, not the whole process.env object
