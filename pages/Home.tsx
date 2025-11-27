@@ -24,10 +24,10 @@ export const Home: React.FC<HomeProps> = ({ selectedCategory }) => {
         <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-2">
           {language === 'zh' ? '发现知识' : 'Discover Knowledge'}
         </h2>
-        <p className="text-slate-500 dark:text-slate-400">
+        <p className="text-slate-500 dark:text-slate-400 text-lg">
           {language === 'zh' 
-            ? '探索精心整理的卡片笔记集合，支持一键导出到 inBox。' 
-            : 'Explore curated timestamped note collections, ready for inBox.'}
+            ? '探索精粹，一键收纳。' 
+            : 'Curated knowledge, instantly captured.'}
         </p>
       </div>
 

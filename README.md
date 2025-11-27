@@ -1,5 +1,7 @@
 # inBox Note Hub (卡片笔记中心)
 
+> 探索精粹，一键收纳。 Curated knowledge, instantly captured.
+
 这是一个开源的卡片笔记共建项目，旨在整理和分享高质量的时间戳笔记（Timestamp Notes）。所有的笔记数据均存储为纯文本文件，支持一键导入到 **inBox 笔记 App**。
 
 在线演示：[card.gudong.site](https://card.gudong.site)
@@ -10,7 +12,6 @@
 - **纯文本存储**：Code as Data，所有笔记都在 `cards/` 目录下，方便维护和贡献。
 - **分类清晰**：包含商业、哲学、文学、历史等多个模块。
 - **中英双语 & 夜间模式**：自动适配。
-- **AI 洞察**：集成 Gemini AI 对笔记进行深度解析（需配置 API Key）。
 
 ## 📂 项目结构
 
@@ -65,40 +66,11 @@
 ```
 
 ### 3. 提交 PR
-将修改提交 Pull Request 到本仓库。
+将修改提交 Pull Request 到本仓库。**PR 审核通过后，我会进行合并并发布更新。**
 
 ---
 
-## 🚀 部署指南 (Deployment)
-
-本项目推荐使用 **Cloudflare Pages** 进行部署，并绑定阿里云域名。
-
-### 1. 准备工作
-- 拥有一个 GitHub 账号并 Fork 本仓库。
-- 拥有 Cloudflare 账号。
-- 拥有阿里云域名 (例如 `gudong.site`)。
-
-### 2. Cloudflare Pages 设置
-1. 登录 Cloudflare Dashboard，进入 **Workers & Pages** -> **Pages**。
-2. 点击 **Connect to Git**，选择你 Fork 的仓库。
-3. **Build Settings (构建设置)**:
-   - **Framework Preset**: Vite
-   - **Build command**: `npm run build`
-   - **Output directory**: `dist`
-4. 点击 **Save and Deploy**。
-
-### 3. 绑定阿里云域名 (`card.gudong.site`)
-1. 在 Cloudflare Pages 项目页面，点击 **Custom domains** -> **Set up a custom domain**。
-2. 输入 `card.gudong.site`，点击 Continue。
-3. Cloudflare 会生成一个目标域名（例如 `inbox-hub.pages.dev`）。
-4. **登录阿里云域名控制台** -> 解析设置。
-5. 添加一条记录：
-   - **记录类型**: `CNAME`
-   - **主机记录**: `card`
-   - **记录值**: 填入 Cloudflare 提供的 `xxx.pages.dev`。
-6. 回到 Cloudflare 点击 **Verify** 或 **Activate**。
-
-### 4. 关注公众号
-关注公众号 **咕咚同学**，回复 **Card** 获取更多部署技巧和最新卡片合集。
+### 关注公众号
+关注公众号 **咕咚同学**，回复 **inbox** 加入用户交流微信群。
 
 ![咕咚同学](https://gudong.s3.bitiful.net/asset/gongzhonghao.jpg)

@@ -13,7 +13,10 @@ import {
   Search,
   Menu,
   X,
-  Sparkles
+  Sparkles,
+  Github,
+  ExternalLink,
+  Info
 } from 'lucide-react';
 import { Category, CategoryId } from './types';
 
@@ -38,5 +41,8 @@ export const ICONS: Record<string, React.FC<any>> = {
   Search,
   Menu,
   X,
-  Sparkles
+  Sparkles,
+  Github,
+  ExternalLink,
+  Info
 };

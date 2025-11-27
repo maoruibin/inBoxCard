@@ -131,46 +131,68 @@ export const CollectionDetail: React.FC = () => {
           <div className="text-center text-slate-400 py-20">No notes found in this file.</div>
         )
       ) : (
-        <div className="bg-slate-900 rounded-xl overflow-hidden shadow-lg border border-slate-700 flex flex-col animate-fadeIn flex-1 min-h-[500px]">
-          <div className="bg-slate-800 px-4 py-3 flex items-center justify-between border-b border-slate-700">
-            <div className="flex space-x-2">
-              <div className="w-3 h-3 rounded-full bg-red-500/50" />
-              <div className="w-3 h-3 rounded-full bg-yellow-500/50" />
-              <div className="w-3 h-3 rounded-full bg-green-500/50" />
-            </div>
-            <div className="flex gap-2">
-              <button 
-                onClick={handleDownload}
-                className="flex items-center gap-1.5 px-3 py-1.5 bg-slate-700 hover:bg-slate-600 text-slate-300 text-xs rounded transition-colors"
-                title="Download .txt"
-              >
-                <ICONS.Download size={14} />
-                <span>.txt</span>
-              </button>
-              <button 
-                onClick={handleCopy}
-                className="flex items-center gap-1.5 px-3 py-1.5 bg-blue-600 hover:bg-blue-500 text-white text-xs rounded font-medium transition-colors"
-              >
-                {copied ? <span className="text-green-300">Copied!</span> : <ICONS.Copy size={14} />}
-                <span>{language === 'zh' ? '复制到 inBox' : 'Copy for inBox'}</span>
-              </button>
-            </div>
+        <div className="flex flex-col gap-6 animate-fadeIn">
+          {/* Import Instruction Card - Moved to Top */}
+          <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-100 dark:border-blue-800/50 rounded-xl p-5 flex flex-col sm:flex-row gap-4">
+             <div className="flex-shrink-0">
+               <div className="w-10 h-10 bg-blue-100 dark:bg-blue-800 rounded-full flex items-center justify-center text-blue-600 dark:text-blue-300">
+                 <ICONS.Info size={20} />
+               </div>
+             </div>
+             <div className="flex-1">
+               <h3 className="font-bold text-slate-800 dark:text-blue-200 mb-2 text-sm sm:text-base">
+                 {language === 'zh' ? '如何使用源码导入？' : 'How to import raw source?'}
+               </h3>
+               <p className="text-sm text-slate-600 dark:text-slate-300 mb-3 leading-relaxed">
+                 {language === 'zh' 
+                   ? '这段内容采用“时间戳笔记”格式。复制下方内容后，打开 inBox App 首页右上角菜单，选择「导入笔记」-「时间戳笔记」，App 将自动识别并将其拆分为多张独立的卡片笔记。' 
+                   : 'This content uses the "Timestamp Note" format. Copy the content below, open the inBox App menu, select "Import Notes" -> "Timestamp Note". The app will automatically parse and create multiple card notes for you.'}
+               </p>
+               <a 
+                 href="https://doc.gudong.site/inbox/time_note.html" 
+                 target="_blank" 
+                 rel="noopener noreferrer"
+                 className="inline-flex items-center gap-1 text-sm font-semibold text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 hover:underline animate-pulse-slow"
+               >
+                 {language === 'zh' ? '查看详细图文教程' : 'View Detailed Tutorial'}
+                 <ICONS.ExternalLink size={12} />
+               </a>
+             </div>
           </div>
-          <div className="p-6 overflow-x-auto flex-1">
-            <pre className="font-mono text-sm text-emerald-400 whitespace-pre-wrap leading-relaxed">
-              {rawContent}
-            </pre>
+
+          {/* Code Editor */}
+          <div className="bg-slate-900 rounded-xl overflow-hidden shadow-lg border border-slate-700 flex flex-col min-h-[400px]">
+            <div className="bg-slate-800 px-4 py-3 flex items-center justify-between border-b border-slate-700">
+              <div className="flex space-x-2">
+                <div className="w-3 h-3 rounded-full bg-red-500/50" />
+                <div className="w-3 h-3 rounded-full bg-yellow-500/50" />
+                <div className="w-3 h-3 rounded-full bg-green-500/50" />
+              </div>
+              <div className="flex gap-2">
+                <button 
+                  onClick={handleDownload}
+                  className="flex items-center gap-1.5 px-3 py-1.5 bg-slate-700 hover:bg-slate-600 text-slate-300 text-xs rounded transition-colors"
+                  title="Download .txt"
+                >
+                  <ICONS.Download size={14} />
+                  <span>.txt</span>
+                </button>
+                <button 
+                  onClick={handleCopy}
+                  className="flex items-center gap-1.5 px-3 py-1.5 bg-blue-600 hover:bg-blue-500 text-white text-xs rounded font-medium transition-colors"
+                >
+                  {copied ? <span className="text-green-300">Copied!</span> : <ICONS.Copy size={14} />}
+                  <span>{language === 'zh' ? '复制到 inBox' : 'Copy for inBox'}</span>
+                </button>
+              </div>
+            </div>
+            <div className="p-6 overflow-x-auto flex-1">
+              <pre className="font-mono text-sm text-emerald-400 whitespace-pre-wrap leading-relaxed">
+                {rawContent}
+              </pre>
+            </div>
           </div>
         </div>
-      )}
-      
-      {/* Footer hint for raw view */}
-      {viewMode === 'raw' && (
-        <p className="mt-4 text-center text-sm text-slate-400">
-           {language === 'zh' 
-             ? '复制以上内容，在 inBox App 首页 > 右上角菜单 > 导入笔记 > 时间戳笔记 即可。' 
-             : 'Copy content above. Import in inBox App via Menu > Import Notes > Timestamp Notes.'}
-        </p>
       )}
     </div>
   );

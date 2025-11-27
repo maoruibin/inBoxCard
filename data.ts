@@ -159,5 +159,40 @@ export const COLLECTIONS: Collection[] = [
     coverColor: 'bg-zinc-600',
     filePath: '/cards/literature/yuhua.txt',
     count: 50
+  },
+    
+  // --- Historical ---
+  {
+    id: 'zeng-guofan',
+    name: '曾国藩的修身之道',
+    nameEn: 'Zeng Guofan',
+    description: '晚清第一名臣的自我约束、渐进积累与组织管理智慧。',
+    category: CategoryId.HISTORY,
+    author: 'Zeng Guofan',
+    coverColor: 'bg-red-800',
+    filePath: '/cards/history/zeng-guofan.txt',
+    count: 50
+  },
+  {
+    id: 'sun-tzu',
+    name: '孙子兵法',
+    nameEn: 'Sun Tzus Art of War',
+    description: '战略思维的源头：知彼知己、不战而屈人之兵的竞争哲学。',
+    category: CategoryId.HISTORY,
+    author: 'Sun Tzu',
+    coverColor: 'bg-gray-700',
+    filePath: '/cards/history/sun-tzu.txt',
+    count: 50
+  },
+  {
+    id: 'marcus-aurelius',
+    name: '马可·奥勒留《沉思录》',
+    nameEn: 'Marcus Aurelius',
+    description: '古罗马帝王的斯多葛哲学：关于理性、责任和接受命运的指引。',
+    category: CategoryId.HISTORY,
+    author: 'Marcus Aurelius',
+    coverColor: 'bg-blue-700',
+    filePath: '/cards/history/marcus-aurelius.txt',
+    count: 50
   }
 ];

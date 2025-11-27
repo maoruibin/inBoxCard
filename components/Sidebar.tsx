@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { CATEGORIES, ICONS } from '../constants';
 import { useApp } from '../context';
 import { CategoryId } from '../types';
@@ -12,6 +12,7 @@ interface SidebarProps {
 
 export const Sidebar: React.FC<SidebarProps> = ({ selectedCategory, onSelectCategory, isOpen, onClose }) => {
   const { language } = useApp();
+  const [showPromo, setShowPromo] = useState(true);
 
   return (
     <>
@@ -25,18 +26,24 @@ export const Sidebar: React.FC<SidebarProps> = ({ selectedCategory, onSelectCate
       <div className={`
         fixed top-0 left-0 bottom-0 w-64 bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 
         transform transition-transform duration-300 ease-in-out z-30
-        md:translate-x-0 md:static md:h-screen flex flex-col
+        md:translate-x-0 md:static md:h-full flex flex-col
         ${isOpen ? 'translate-x-0' : '-translate-x-full'}
       `}>
-        <div className="p-6 h-full flex flex-col overflow-y-auto custom-scrollbar">
-          <div className="flex items-center space-x-2 mb-8 text-slate-800 dark:text-white flex-shrink-0">
-            <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white font-bold shadow-blue-500/20 shadow-lg">
-              i
-            </div>
+        {/* Fixed Header */}
+        <div className="p-6 pb-4 flex-shrink-0">
+          <div className="flex items-center space-x-2 text-slate-800 dark:text-white">
+            <img 
+              src="https://gudong.s3.bitiful.net/icon/inbox.svg?no-wait=on" 
+              alt="inBox Logo" 
+              className="w-8 h-8 object-contain"
+            />
             <h1 className="text-xl font-bold tracking-tight">inBox Hub</h1>
           </div>
+        </div>
 
-          <nav className="space-y-1 flex-1">
+        {/* Scrollable Navigation */}
+        <div className="flex-1 overflow-y-auto custom-scrollbar px-6">
+          <nav className="space-y-1 pb-4">
             <button
               onClick={() => { onSelectCategory('all'); onClose(); }}
               className={`w-full flex items-center space-x-3 px-4 py-3 rounded-xl transition-all ${
@@ -76,10 +83,20 @@ export const Sidebar: React.FC<SidebarProps> = ({ selectedCategory, onSelectCate
               })}
             </div>
           </nav>
+        </div>
 
-          <div className="mt-6 pt-6 border-t border-slate-100 dark:border-slate-800 flex-shrink-0">
-             {/* GongZhongHao Promo */}
-             <div className="bg-slate-50 dark:bg-slate-800/50 p-4 rounded-2xl mb-4 border border-slate-100 dark:border-slate-700/50">
+        {/* Fixed Footer */}
+        <div className="p-6 border-t border-slate-100 dark:border-slate-800 flex-shrink-0 space-y-4 bg-white dark:bg-slate-900 z-10">
+           {/* GongZhongHao Promo */}
+           {showPromo && (
+             <div className="relative bg-slate-50 dark:bg-slate-800/50 p-4 rounded-2xl border border-slate-100 dark:border-slate-700/50 animate-fadeIn">
+                <button 
+                  onClick={(e) => { e.stopPropagation(); setShowPromo(false); }}
+                  className="absolute top-2 right-2 text-slate-300 hover:text-slate-500 dark:text-slate-600 dark:hover:text-slate-400 transition-colors p-1"
+                  title={language === 'zh' ? '关闭' : 'Close'}
+                >
+                  <ICONS.X size={14} />
+                </button>
                 <p className="text-xs font-bold text-slate-700 dark:text-slate-200 mb-3 flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
                   关注公众号：咕咚同学
@@ -92,14 +109,25 @@ export const Sidebar: React.FC<SidebarProps> = ({ selectedCategory, onSelectCate
                   />
                 </div>
                 <p className="text-[10px] text-slate-500 dark:text-slate-400 text-center leading-relaxed">
-                  回复 <b className="text-blue-600 dark:text-blue-400">Card</b> 获取最新动态<br/>与共建计划
+                  回复 <b className="text-blue-600 dark:text-blue-400">inbox</b> 加入<br/>用户交流微信群
                 </p>
              </div>
+           )}
 
-             <div className="text-xs text-slate-300 dark:text-slate-600 text-center font-mono">
-               Designed by inBox
-             </div>
-          </div>
+           {/* Github Link */}
+           <a 
+             href="https://github.com/maoruibin/inBoxCard" 
+             target="_blank" 
+             rel="noopener noreferrer"
+             className="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-xs font-bold transition-transform hover:scale-[1.02] active:scale-95 shadow-md"
+           >
+             <ICONS.Github size={16} />
+             <span>GitHub</span>
+           </a>
+
+           <div className="text-xs text-slate-300 dark:text-slate-600 text-center font-mono">
+             Designed by inBox
+           </div>
         </div>
       </div>
     </>

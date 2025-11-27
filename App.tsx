@@ -13,7 +13,7 @@ const MainLayout: React.FC = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   return (
-    <div className="flex min-h-screen bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-slate-100 font-sans transition-colors duration-200">
+    <div className="flex h-screen overflow-hidden bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-slate-100 font-sans transition-colors duration-200">
       
       {/* Sidebar */}
       <Sidebar 
@@ -24,10 +24,10 @@ const MainLayout: React.FC = () => {
       />
 
       {/* Main Content Area */}
-      <div className="flex-1 flex flex-col w-full md:ml-0 transition-all">
+      <div className="flex-1 flex flex-col w-full md:ml-0 transition-all h-full relative">
         
         {/* Mobile Header / Toolbar */}
-        <header className="sticky top-0 z-10 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 px-6 py-4 flex items-center justify-between">
+        <header className="flex-shrink-0 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 px-6 py-4 flex items-center justify-between z-10">
           <div className="flex items-center gap-4">
              <button 
                onClick={() => setIsSidebarOpen(true)}
@@ -46,7 +46,21 @@ const MainLayout: React.FC = () => {
              </div>
           </div>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 sm:gap-3">
+             {/* inBox App Official Site Link */}
+             <a 
+               href="https://doc.gudong.site/inbox/" 
+               target="_blank" 
+               rel="noopener noreferrer"
+               className="flex items-center gap-1.5 px-3 py-1.5 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-400 transition-colors text-xs font-medium mr-1"
+               title={language === 'zh' ? '访问 inBox 官网' : 'Visit inBox Website'}
+             >
+               <span>inBox App</span>
+               <ICONS.ExternalLink size={14} />
+             </a>
+
+             <div className="h-4 w-[1px] bg-slate-200 dark:bg-slate-700 mx-1"></div>
+
              <button 
                onClick={() => setLanguage(language === 'zh' ? 'en' : 'zh')}
                className="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-400 transition-colors font-medium text-xs flex items-center gap-1"
