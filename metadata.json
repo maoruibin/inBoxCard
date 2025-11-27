@@ -1,0 +1,5 @@
+{
+  "name": "inBox Note Hub",
+  "description": "A community-driven knowledge card repository featuring timestamped notes compatible with inBox app. Includes curated wisdom from famous figures and supports bilingual display and night mode.",
+  "requestFramePermissions": []
+}
