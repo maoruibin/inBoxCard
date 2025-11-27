@@ -11,7 +11,18 @@ export const COLLECTIONS: Collection[] = [
     author: 'Naval Ravikant',
     coverColor: 'bg-blue-500',
     filePath: '/cards/entrepreneur/naval.txt',
-    count: 6
+    count: 50
+  },
+  {
+    id: 'duan-yongping',
+    name: '段永平语录',
+    nameEn: 'Duan Yongping',
+    description: '“本分”哲学、价值投资与“慢就是快”的商界洞察。',
+    category: CategoryId.ENTREPRENEUR,
+    author: 'Duan Yongping',
+    coverColor: 'bg-green-600',
+    filePath: '/cards/entrepreneur/duan-yongping.txt',
+    count: 30
   },
   {
     id: 'zhang-yiming',
@@ -22,7 +33,7 @@ export const COLLECTIONS: Collection[] = [
     author: 'Zhang Yiming',
     coverColor: 'bg-indigo-500',
     filePath: '/cards/entrepreneur/zhang-yiming.txt',
-    count: 5
+    count: 50
   },
   {
     id: 'wang-xing',
@@ -33,7 +44,7 @@ export const COLLECTIONS: Collection[] = [
     author: 'Wang Xing',
     coverColor: 'bg-cyan-500',
     filePath: '/cards/entrepreneur/wang-xing.txt',
-    count: 5
+    count: 50
   },
   {
     id: 'elon-musk',
@@ -44,7 +55,7 @@ export const COLLECTIONS: Collection[] = [
     author: 'Elon Musk',
     coverColor: 'bg-slate-800',
     filePath: '/cards/entrepreneur/elon-musk.txt',
-    count: 5
+    count: 50
   },
   {
     id: 'munger',
@@ -55,7 +66,7 @@ export const COLLECTIONS: Collection[] = [
     author: 'Charlie Munger',
     coverColor: 'bg-amber-700',
     filePath: '/cards/entrepreneur/munger.txt',
-    count: 5
+    count: 50
   },
 
   // --- Philosophy ---
@@ -68,7 +79,7 @@ export const COLLECTIONS: Collection[] = [
     author: 'Kong Zi',
     coverColor: 'bg-amber-600',
     filePath: '/cards/philosophy/confucius.txt',
-    count: 5
+    count: 50
   },
   {
     id: 'tao',
@@ -79,7 +90,7 @@ export const COLLECTIONS: Collection[] = [
     author: 'Lao Zi',
     coverColor: 'bg-emerald-600',
     filePath: '/cards/philosophy/tao.txt',
-    count: 5
+    count: 50
   },
   {
     id: 'buddhism',
@@ -90,7 +101,7 @@ export const COLLECTIONS: Collection[] = [
     author: 'Buddha',
     coverColor: 'bg-yellow-600',
     filePath: '/cards/philosophy/buddhism.txt',
-    count: 5
+    count: 50
   },
   {
     id: 'zen',
@@ -101,7 +112,7 @@ export const COLLECTIONS: Collection[] = [
     author: 'Zen Masters',
     coverColor: 'bg-stone-500',
     filePath: '/cards/philosophy/zen.txt',
-    count: 5
+    count: 50
   },
   {
     id: 'mao',
@@ -112,7 +123,7 @@ export const COLLECTIONS: Collection[] = [
     author: 'Mao Zedong',
     coverColor: 'bg-red-600',
     filePath: '/cards/philosophy/mao.txt',
-    count: 5
+    count: 50
   },
 
   // --- Literature ---
@@ -125,7 +136,7 @@ export const COLLECTIONS: Collection[] = [
     author: 'Dou Dou',
     coverColor: 'bg-gray-700',
     filePath: '/cards/literature/tiandao.txt',
-    count: 5
+    count: 50
   },
   {
     id: 'moyan',
@@ -136,7 +147,7 @@ export const COLLECTIONS: Collection[] = [
     author: 'Mo Yan',
     coverColor: 'bg-orange-600',
     filePath: '/cards/literature/moyan.txt',
-    count: 5
+    count: 50
   },
   {
     id: 'yuhua',
@@ -147,6 +158,6 @@ export const COLLECTIONS: Collection[] = [
     author: 'Yu Hua',
     coverColor: 'bg-zinc-600',
     filePath: '/cards/literature/yuhua.txt',
-    count: 5
+    count: 50
   }
 ];
