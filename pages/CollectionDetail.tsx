@@ -72,26 +72,30 @@ export const CollectionDetail: React.FC = () => {
           {language === 'zh' ? '返回' : 'Back'}
         </button>
 
-        <div className="flex items-center bg-slate-100 dark:bg-slate-800 p-1 rounded-lg self-start">
+        <div className="flex items-center bg-slate-100 dark:bg-slate-800 p-1.5 rounded-xl self-start dark:border-blue-700/50 shadow-sm">
           <button
             onClick={() => setViewMode('cards')}
-            className={`px-4 py-1.5 rounded-md text-sm font-medium transition-all ${
+            aria-pressed={viewMode === 'cards'}
+            className={`px-4 py-1.5 rounded-md text-sm font-semibold transition-all flex items-center gap-2 ${
               viewMode === 'cards' 
-                ? 'bg-white dark:bg-slate-700 shadow-sm text-slate-900 dark:text-white' 
-                : 'text-slate-500 hover:text-slate-700 dark:text-slate-400'
+                ? 'bg-blue-600 text-white shadow-md ring-2 ring-blue-300 dark:ring-blue-500' 
+                : 'text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700'
             }`}
           >
-            {language === 'zh' ? '卡片视图' : 'Cards'}
+            <ICONS.BookOpen size={16} />
+            <span>{language === 'zh' ? '卡片视图' : 'Cards'}</span>
           </button>
           <button
             onClick={() => setViewMode('raw')}
-            className={`px-4 py-1.5 rounded-md text-sm font-medium transition-all ${
+            aria-pressed={viewMode === 'raw'}
+            className={`px-4 py-1.5 rounded-md text-sm font-semibold transition-all flex items-center gap-2 ${
               viewMode === 'raw' 
-                ? 'bg-white dark:bg-slate-700 shadow-sm text-slate-900 dark:text-white' 
-                : 'text-slate-500 hover:text-slate-700 dark:text-slate-400'
+                ? 'bg-blue-600 text-white shadow-md ring-2 ring-blue-300 dark:ring-blue-500' 
+                : 'text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700'
             }`}
           >
-            {language === 'zh' ? '时间戳源码' : 'Timestamp Source'}
+            <ICONS.Info size={16} />
+            <span>{language === 'zh' ? '时间戳源码' : 'Timestamp Source'}</span>
           </button>
         </div>
       </div>
