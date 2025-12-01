@@ -155,7 +155,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ selectedCategory, onSelectCate
            </a>
 
            <div className="text-xs text-slate-300 dark:text-slate-600 text-center font-mono">
-             Designed by Gemini&咕咚
+             Designed by Gemini & 咕咚
            </div>
         </div>
       </div>

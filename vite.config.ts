@@ -11,6 +11,7 @@ export default defineConfig(({ mode }) => {
     plugins: [
       react(),
     ],
+    publicDir: 'cards',
     define: {
       // Security fix: Only expose specific keys, not the whole process.env object
       'process.env.API_KEY': JSON.stringify(env.API_KEY || (process as any).env.API_KEY || '')

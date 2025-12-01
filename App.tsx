@@ -65,16 +65,7 @@ const MainLayout: React.FC = () => {
           </div>
 
           <div className="flex items-center gap-2 sm:gap-3">
-             {/* Random Button (Mobile/Desktop Quick Access) */}
-             <button
-               onClick={() => navigate('/review')}
-               className="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 text-purple-500 hover:text-purple-600 dark:text-purple-400 transition-colors"
-               title={language === 'zh' ? '随机漫步' : 'Serendipity'}
-             >
-               <ICONS.Dices size={20} />
-             </button>
-
-             <div className="h-4 w-[1px] bg-slate-200 dark:bg-slate-700 mx-1"></div>
+          
 
              {/* inBox App Official Site Link */}
              <a 
