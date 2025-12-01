@@ -13,7 +13,6 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "types": ["node"],
 
     /* Linting */
     "strict": true,
@@ -22,5 +21,5 @@
     "noFallthroughCasesInSwitch": true
   },
   "include": ["./**/*.ts", "./**/*.tsx"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "vite.config.ts"]
 }
