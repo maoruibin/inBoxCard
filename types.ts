@@ -41,4 +41,6 @@ export interface AppContextType {
   setLanguage: (lang: Language) => void;
   theme: Theme;
   toggleTheme: () => void;
+  searchQuery: string;
+  setSearchQuery: (query: string) => void;
 }

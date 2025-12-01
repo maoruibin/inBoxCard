@@ -9,10 +9,23 @@ import { CategoryId } from './types';
 import { ICONS } from './constants';
 
 const MainLayout: React.FC = () => {
-  const { theme, toggleTheme, language, setLanguage } = useApp();
+  const { theme, toggleTheme, language, setLanguage, searchQuery, setSearchQuery } = useApp();
   const [selectedCategory, setSelectedCategory] = useState<CategoryId | 'all'>('all');
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const navigate = useNavigate();
+
+  // Unified handler for sidebar navigation
+  const handleCategorySelect = (id: CategoryId | 'all') => {
+    setSearchQuery(''); // Force clear search to exit search mode
+    setSelectedCategory(id);
+    setIsSidebarOpen(false);
+    navigate('/');
+    // Scroll to top of the main content
+    const mainElement = document.querySelector('main');
+    if (mainElement) {
+      mainElement.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
 
   return (
     <div className="flex h-screen overflow-hidden bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-slate-100 font-sans transition-colors duration-200">
@@ -20,7 +33,7 @@ const MainLayout: React.FC = () => {
       {/* Sidebar */}
       <Sidebar 
         selectedCategory={selectedCategory} 
-        onSelectCategory={(id) => { setSelectedCategory(id); navigate('/'); }} 
+        onSelectCategory={handleCategorySelect} 
         isOpen={isSidebarOpen}
         onClose={() => setIsSidebarOpen(false)}
       />
@@ -44,6 +57,8 @@ const MainLayout: React.FC = () => {
                  type="text" 
                  placeholder={language === 'zh' ? "搜索笔记..." : "Search notes..."}
                  className="bg-transparent border-none outline-none text-sm w-full dark:text-white placeholder-slate-400"
+                 value={searchQuery}
+                 onChange={(e) => setSearchQuery(e.target.value)}
                />
              </div>
           </div>

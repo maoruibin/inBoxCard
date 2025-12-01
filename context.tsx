@@ -6,6 +6,7 @@ const AppContext = createContext<AppContextType | undefined>(undefined);
 export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [language, setLanguage] = useState<Language>('zh');
   const [theme, setTheme] = useState<Theme>('light');
+  const [searchQuery, setSearchQuery] = useState<string>('');
 
   useEffect(() => {
     // Check system preference or local storage on mount
@@ -32,7 +33,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   };
 
   return (
-    <AppContext.Provider value={{ language, setLanguage, theme, toggleTheme }}>
+    <AppContext.Provider value={{ language, setLanguage, theme, toggleTheme, searchQuery, setSearchQuery }}>
       {children}
     </AppContext.Provider>
   );

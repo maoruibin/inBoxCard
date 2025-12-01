@@ -21,6 +21,16 @@ export const CollectionDetail: React.FC = () => {
 
   const collection = useMemo(() => COLLECTIONS.find(c => c.id === id), [id]);
 
+  // Scroll to top when entering the collection detail page
+  useEffect(() => {
+    const mainElement = document.querySelector('main');
+    if (mainElement) {
+      mainElement.scrollTop = 0;
+    }
+    // Also try window scroll for mobile browsers address bar interactions
+    window.scrollTo(0, 0);
+  }, [id]);
+
   useEffect(() => {
     if (collection) {
       setLoading(true);
@@ -62,45 +72,48 @@ export const CollectionDetail: React.FC = () => {
 
   return (
     <div className="p-6 max-w-5xl mx-auto min-h-screen flex flex-col">
-      {/* Header */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
-        <button 
-          onClick={() => navigate('/')}
-          className="flex items-center text-slate-500 hover:text-slate-800 dark:hover:text-slate-200 transition-colors gap-2"
-        >
-          <ICONS.ArrowLeft size={20} />
-          {language === 'zh' ? '返回' : 'Back'}
-        </button>
+      {/* Header - Sticky & Hover Interaction */}
+      <div className="sticky top-0 z-10 -mt-6 pt-6 pb-4 -mx-6 px-6 mb-6 bg-slate-50/95 dark:bg-slate-900/95 backdrop-blur-md border-b border-slate-200/50 dark:border-slate-800/50 transition-all shadow-sm group/header">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 max-w-5xl mx-auto">
+          <button 
+            onClick={() => navigate('/')}
+            className="flex items-center text-slate-500 hover:text-slate-900 dark:hover:text-white transition-all gap-2 px-3 py-2 -ml-3 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 group-hover/header:translate-x-1"
+            title={language === 'zh' ? '返回首页' : 'Back to Home'}
+          >
+            <ICONS.ArrowLeft size={20} className="group-hover/header:scale-110 transition-transform" />
+            <span className="font-medium">{language === 'zh' ? '返回' : 'Back'}</span>
+          </button>
 
-        <div className="flex items-center bg-slate-100 dark:bg-slate-800 p-1.5 rounded-xl self-start dark:border-blue-700/50 shadow-sm">
-          <button
-            onClick={() => setViewMode('cards')}
-            aria-pressed={viewMode === 'cards'}
-            className={`px-4 py-1.5 rounded-md text-sm font-semibold transition-all flex items-center gap-2 ${
-              viewMode === 'cards' 
-                ? 'bg-blue-600 text-white shadow-md ring-2 ring-blue-300 dark:ring-blue-500' 
-                : 'text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700'
-            }`}
-          >
-            <ICONS.BookOpen size={16} />
-            <span>{language === 'zh' ? '卡片视图' : 'Cards'}</span>
-          </button>
-          <button
-            onClick={() => setViewMode('raw')}
-            aria-pressed={viewMode === 'raw'}
-            className={`px-4 py-1.5 rounded-md text-sm font-semibold transition-all flex items-center gap-2 ${
-              viewMode === 'raw' 
-                ? 'bg-blue-600 text-white shadow-md ring-2 ring-blue-300 dark:ring-blue-500' 
-                : 'text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700'
-            }`}
-          >
-            <ICONS.Info size={16} />
-            <span>{language === 'zh' ? '时间戳源码' : 'Timestamp Source'}</span>
-          </button>
+          <div className="flex items-center bg-slate-100 dark:bg-slate-800 p-1.5 rounded-xl self-start dark:border-blue-700/50 shadow-sm">
+            <button
+              onClick={() => setViewMode('cards')}
+              aria-pressed={viewMode === 'cards'}
+              className={`px-4 py-1.5 rounded-md text-sm font-semibold transition-all flex items-center gap-2 ${
+                viewMode === 'cards' 
+                  ? 'bg-white dark:bg-slate-700 text-blue-600 dark:text-blue-400 shadow-sm ring-1 ring-black/5 dark:ring-white/10' 
+                  : 'text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200'
+              }`}
+            >
+              <ICONS.BookOpen size={16} />
+              <span>{language === 'zh' ? '卡片视图' : 'Cards'}</span>
+            </button>
+            <button
+              onClick={() => setViewMode('raw')}
+              aria-pressed={viewMode === 'raw'}
+              className={`px-4 py-1.5 rounded-md text-sm font-semibold transition-all flex items-center gap-2 ${
+                viewMode === 'raw' 
+                  ? 'bg-white dark:bg-slate-700 text-blue-600 dark:text-blue-400 shadow-sm ring-1 ring-black/5 dark:ring-white/10' 
+                  : 'text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200'
+              }`}
+            >
+              <ICONS.Info size={16} />
+              <span>{language === 'zh' ? '时间戳源码' : 'Source'}</span>
+            </button>
+          </div>
         </div>
       </div>
 
-      <div className="mb-8">
+      <div className="mb-8 animate-fadeIn">
         <h1 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-2">
           {language === 'zh' ? collection.name : collection.nameEn}
         </h1>
@@ -133,7 +146,7 @@ export const CollectionDetail: React.FC = () => {
         )
       ) : (
         <div className="flex flex-col gap-6 animate-fadeIn">
-          {/* Import Instruction Card - Moved to Top */}
+          {/* Import Instruction Card */}
           <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-100 dark:border-blue-800/50 rounded-xl p-5 flex flex-col sm:flex-row gap-4">
              <div className="flex-shrink-0">
                <div className="w-10 h-10 bg-blue-100 dark:bg-blue-800 rounded-full flex items-center justify-center text-blue-600 dark:text-blue-300">

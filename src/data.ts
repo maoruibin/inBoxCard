@@ -114,17 +114,6 @@ export const COLLECTIONS: Collection[] = [
     filePath: '/cards/philosophy/buddhism.txt',
     count: 50
   },
-   {
-    id: 'wang-yangming',
-    name: '王阳明的知行合一',
-    nameEn: 'Wang Yangming',
-    description: '心学核心：关于致良知、知行合一的个人修身与实践哲学。',
-    category: CategoryId.PHILOSOPHY,
-    author: 'Wang Yangming',
-    coverColor: 'bg-indigo-700', // 宁静的靛蓝色，代表内在心学
-    filePath: '/cards/philosophy/wang-yangming.txt',
-    count: 50 
-  },
   {
     id: 'zen',
     name: '禅宗公案',

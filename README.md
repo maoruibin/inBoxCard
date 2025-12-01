@@ -1,14 +1,10 @@
-# inBox Card (知识卡片集合)
+# inBox Note Hub (卡片笔记中心)
 
 > 探索精粹，一键收纳。 Curated knowledge, instantly captured.
 
-这是一个开源的卡片笔记共建项目，旨在整理和分享高质量的时间戳笔记。所有的笔记数据均存储为纯文本文件，支持一键导入到 **inBox 笔记 App**。
+这是一个开源的卡片笔记共建项目，旨在整理和分享高质量的时间戳笔记（Timestamp Notes）。所有的笔记数据均存储为纯文本文件，支持一键导入到 **inBox 笔记 App**。
 
 在线演示：[card.gudong.site](https://card.gudong.site)
-
-> inBox 笔记是我的另一个项目，这是我自己开发的一个本地卡片笔记 App(Android)，支持 Markdown 语法，支持批注笔记、关联笔记，使用标签管理笔记，更多详情可查看[inBox 笔记](https://doc.gudong.site/inbox/)，
-
-
 
 ## ✨ 特性
 
