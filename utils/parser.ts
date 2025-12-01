@@ -1,21 +1,25 @@
 import { Note } from '../types';
+import { log } from './logger';
 
 export const parseTimestampNotes = (text: string): Note[] => {
-  // Regex to match the timestamp formats supported by inBox (start of line)
-  // Supports: 2022-08-21 23:06:24, 2022.08.21 23:06, 2022/08/21 23:06 etc.
-  const timeRegex = /^(\d{4}[-./]\d{2}[-./]\d{2}\s+\d{2}:\d{2}(?::\d{2})?)\s*$/gm;
+  const normalized = text.replace(/^\uFEFF/, '');
+  const timeRegex = /^(\d{4}[-./]\d{1,2}[-./]\d{1,2}\s+\d{1,2}:\d{2}(?::\d{2})?)\s*$/gm;
   
   const notes: Note[] = [];
-  const matches = [...text.matchAll(timeRegex)];
+  const matches = [...normalized.matchAll(timeRegex)];
+  log.debug('parser matches', matches.length);
   
-  if (matches.length === 0) return [];
+  if (matches.length === 0) {
+    log.warn('parser no matches', normalized.slice(0, 120));
+    return [];
+  }
 
   matches.forEach((match, i) => {
     const timestamp = match[1];
     const startIndex = match.index! + match[0].length;
-    const endIndex = i < matches.length - 1 ? matches[i + 1].index! : text.length;
+    const endIndex = i < matches.length - 1 ? matches[i + 1].index! : normalized.length;
     
-    let rawContent = text.substring(startIndex, endIndex).trim();
+    let rawContent = normalized.substring(startIndex, endIndex).trim();
     
     // Extract tags (looking for #tag at the end of content)
     let tags: string[] = [];

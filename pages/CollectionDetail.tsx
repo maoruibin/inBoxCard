@@ -6,6 +6,7 @@ import { ICONS } from '../constants';
 import { Card } from '../components/Card';
 import { Note } from '../types';
 import { parseTimestampNotes } from '../utils/parser';
+import { log } from '../utils/logger';
 import { loadNoteContent } from '../utils/loader';
 
 export const CollectionDetail: React.FC = () => {
@@ -39,10 +40,11 @@ export const CollectionDetail: React.FC = () => {
           setRawContent(text);
           const parsedNotes = parseTimestampNotes(text);
           setNotes(parsedNotes);
+          log.debug('detail loaded', { path: collection.filePath, length: text.length, notes: parsedNotes.length });
           setLoading(false);
         })
         .catch(err => {
-          console.error(err);
+          log.error('detail load error', collection.filePath, err?.message || err);
           setError(language === 'zh' ? '加载笔记失败，请确保文件存在。' : 'Failed to load notes. File might be missing.');
           setLoading(false);
         });

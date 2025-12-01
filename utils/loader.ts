@@ -1,3 +1,5 @@
+import { log } from './logger'
+
 export const loadNoteContent = async (filePath: string): Promise<string> => {
   const candidates = [filePath];
   if (filePath.startsWith('/')) {
@@ -10,10 +12,14 @@ export const loadNoteContent = async (filePath: string): Promise<string> => {
     try {
       const res = await fetch(p);
       if (res.ok) {
+        log.debug('loadNoteContent ok', { filePath, resolved: p, status: res.status });
         return await res.text();
       }
+      log.warn('loadNoteContent not ok', { filePath, resolved: p, status: res.status });
     } catch {}
   }
 
-  throw new Error(`Note file not found: ${filePath}`);
+  const msg = `Note file not found: ${filePath}`;
+  log.error('loadNoteContent fail', msg, { candidates });
+  throw new Error(msg);
 };
