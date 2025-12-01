@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { CATEGORIES, ICONS } from '../constants';
 import { useApp } from '../context';
 import { CategoryId } from '../types';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 interface SidebarProps {
   selectedCategory: CategoryId | 'all';
@@ -13,6 +14,15 @@ interface SidebarProps {
 export const Sidebar: React.FC<SidebarProps> = ({ selectedCategory, onSelectCategory, isOpen, onClose }) => {
   const { language } = useApp();
   const [showPromo, setShowPromo] = useState(true);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const handleRandomClick = () => {
+    navigate('/review');
+    onClose();
+  };
+
+  const isReviewPage = location.pathname === '/review';
 
   return (
     <>
@@ -31,7 +41,10 @@ export const Sidebar: React.FC<SidebarProps> = ({ selectedCategory, onSelectCate
       `}>
         {/* Fixed Header */}
         <div className="p-6 pb-4 flex-shrink-0">
-          <div className="flex items-center space-x-2 text-slate-800 dark:text-white">
+          <div 
+            className="flex items-center space-x-2 text-slate-800 dark:text-white cursor-pointer"
+            onClick={() => { onSelectCategory('all'); onClose(); }}
+          >
             <img 
               src="https://gudong.s3.bitiful.net/icon/inbox.svg?no-wait=on" 
               alt="inBox Logo" 
@@ -47,7 +60,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ selectedCategory, onSelectCate
             <button
               onClick={() => { onSelectCategory('all'); onClose(); }}
               className={`w-full flex items-center space-x-3 px-4 py-3 rounded-xl transition-all ${
-                selectedCategory === 'all' 
+                selectedCategory === 'all' && !isReviewPage
                   ? 'bg-blue-50 text-blue-600 dark:bg-blue-900/20 dark:text-blue-400 font-medium shadow-sm' 
                   : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50'
               }`}
@@ -56,6 +69,21 @@ export const Sidebar: React.FC<SidebarProps> = ({ selectedCategory, onSelectCate
                 <ICONS.Sparkles size={18} />
               </span>
               <span>{language === 'zh' ? '全部精选' : 'All Collections'}</span>
+            </button>
+
+            {/* Random Review Button */}
+            <button
+              onClick={handleRandomClick}
+              className={`w-full flex items-center space-x-3 px-4 py-3 rounded-xl transition-all ${
+                isReviewPage
+                  ? 'bg-purple-50 text-purple-600 dark:bg-purple-900/20 dark:text-purple-400 font-medium shadow-sm' 
+                  : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50'
+              }`}
+            >
+              <span className="w-5 h-5 flex items-center justify-center">
+                <ICONS.Dices size={18} />
+              </span>
+              <span>{language === 'zh' ? '随机漫步' : 'Serendipity'}</span>
             </button>
 
             <div className="my-4 border-t border-slate-100 dark:border-slate-800/50" />
@@ -71,7 +99,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ selectedCategory, onSelectCate
                     key={category.id}
                     onClick={() => { onSelectCategory(category.id); onClose(); }}
                     className={`w-full flex items-center space-x-3 px-4 py-3 rounded-xl transition-all ${
-                      selectedCategory === category.id 
+                      selectedCategory === category.id && !isReviewPage
                         ? 'bg-blue-50 text-blue-600 dark:bg-blue-900/20 dark:text-blue-400 font-medium shadow-sm' 
                         : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50'
                     }`}

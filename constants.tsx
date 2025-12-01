@@ -16,7 +16,9 @@ import {
   Sparkles,
   Github,
   ExternalLink,
-  Info
+  Info,
+  Dices,
+  Shuffle
 } from 'lucide-react';
 import { Category, CategoryId } from './types';
 
@@ -44,5 +46,7 @@ export const ICONS: Record<string, React.FC<any>> = {
   Sparkles,
   Github,
   ExternalLink,
-  Info
+  Info,
+  Dices,
+  Shuffle
 };

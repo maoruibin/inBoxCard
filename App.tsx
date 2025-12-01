@@ -4,6 +4,7 @@ import { Sidebar } from './components/Sidebar';
 import { Home } from './pages/Home';
 import { CollectionDetail } from './pages/CollectionDetail';
 import { Contribute } from './pages/Contribute';
+import { RandomReview } from './pages/RandomReview';
 import { AppProvider, useApp } from './context';
 import { CategoryId } from './types';
 import { ICONS } from './constants';
@@ -64,28 +65,28 @@ const MainLayout: React.FC = () => {
           </div>
 
           <div className="flex items-center gap-2 sm:gap-3">
+             {/* Random Button (Mobile/Desktop Quick Access) */}
+             <button
+               onClick={() => navigate('/review')}
+               className="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 text-purple-500 hover:text-purple-600 dark:text-purple-400 transition-colors"
+               title={language === 'zh' ? '随机漫步' : 'Serendipity'}
+             >
+               <ICONS.Dices size={20} />
+             </button>
+
+             <div className="h-4 w-[1px] bg-slate-200 dark:bg-slate-700 mx-1"></div>
+
              {/* inBox App Official Site Link */}
              <a 
                href="https://doc.gudong.site/inbox/" 
                target="_blank" 
                rel="noopener noreferrer"
-               className="flex items-center gap-1.5 px-3 py-1.5 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-400 transition-colors text-xs font-medium mr-1"
+               className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-400 transition-colors text-xs font-medium mr-1"
                title={language === 'zh' ? '访问 inBox 官网' : 'Visit inBox Website'}
              >
                <span>inBox App</span>
                <ICONS.ExternalLink size={14} />
              </a>
-
-             <a
-               href="#/contribute"
-               className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-400 transition-colors text-xs font-medium"
-               title={language === 'zh' ? '贡献指南' : 'Contribute Guide'}
-             >
-               <ICONS.Info size={14} />
-               <span>{language === 'zh' ? '贡献指南' : 'Contribute'}</span>
-             </a>
-
-             <div className="h-4 w-[1px] bg-slate-200 dark:bg-slate-700 mx-1"></div>
 
              <button 
                onClick={() => setLanguage(language === 'zh' ? 'en' : 'zh')}
@@ -109,6 +110,7 @@ const MainLayout: React.FC = () => {
             <Route path="/" element={<Home selectedCategory={selectedCategory} />} />
             <Route path="/collection/:id" element={<CollectionDetail />} />
             <Route path="/contribute" element={<Contribute />} />
+            <Route path="/review" element={<RandomReview />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </main>
