@@ -4,9 +4,9 @@ import { COLLECTIONS } from '../data';
 import { CategoryId, Note } from '../types';
 import { ICONS } from '../constants';
 import { useNavigate } from 'react-router-dom';
-import { NOTES_CONTENT } from '../src/resources';
 import { parseTimestampNotes } from '../utils/parser';
 import { Card } from '../components/Card';
+import { loadNoteContent } from '../utils/loader';
 
 interface HomeProps {
   selectedCategory: CategoryId | 'all';
@@ -48,32 +48,48 @@ export const Home: React.FC<HomeProps> = ({ selectedCategory }) => {
 
     // Simple delay to avoid blocking UI on every keystroke (debounce simulation)
     const timeoutId = setTimeout(() => {
-      COLLECTIONS.forEach(col => {
-        // Try to retrieve content. Handle potential path differences.
-        const content = NOTES_CONTENT[col.filePath] || NOTES_CONTENT[col.filePath.replace('/', '')];
-        
-        if (content) {
-          const notes = parseTimestampNotes(content);
-          notes.forEach(note => {
-            if (
-              note.content.toLowerCase().includes(query) || 
-              (note.tags && note.tags.some(t => t.toLowerCase().includes(query)))
-            ) {
-              results.push({
-                ...note,
-                collectionName: language === 'zh' ? col.name : col.nameEn,
-                collectionId: col.id
-              });
-            }
-          });
+      let cancelled = false;
+      Promise.all(
+        COLLECTIONS.map(async (col) => {
+          try {
+            const content = await loadNoteContent(col.filePath);
+            const notes = parseTimestampNotes(content);
+            notes.forEach(note => {
+              if (
+                note.content.toLowerCase().includes(query) ||
+                (note.tags && note.tags.some(t => t.toLowerCase().includes(query)))
+              ) {
+                results.push({
+                  ...note,
+                  collectionName: language === 'zh' ? col.name : col.nameEn,
+                  collectionId: col.id
+                });
+              }
+            });
+          } catch {
+            // ignore missing files
+          }
+        })
+      ).then(() => {
+        if (!cancelled) {
+          setSearchResults(results);
+          setIsSearching(false);
         }
       });
-      setSearchResults(results);
-      setIsSearching(false);
+      return () => { cancelled = true; };
     }, 300);
 
     return () => clearTimeout(timeoutId);
   }, [searchQuery, language]);
+
+  // Clear search state when category changes (ensure list view shows collections)
+  useEffect(() => {
+    if (searchQuery) {
+      setSearchQuery('');
+    }
+    setSearchResults([]);
+    setIsSearching(false);
+  }, [selectedCategory]);
 
   // Render Search Results
   if (searchQuery.trim()) {

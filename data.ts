@@ -70,17 +70,7 @@ export const COLLECTIONS: Collection[] = [
   },
 
   // --- Philosophy ---
-  {
-    id: 'wang-yangming',
-    name: '王阳明的知行合一',
-    nameEn: 'Wang Yangming',
-    description: '心学核心：关于致良知、知行合一的个人修身与实践哲学。',
-    category: CategoryId.PHILOSOPHY,
-    author: 'Wang Yangming',
-    coverColor: 'bg-indigo-700',
-    filePath: '/cards/philosophy/wang-yangming.txt',
-    count: 100
-  },
+  
   {
     id: 'confucius',
     name: '论语·孔子',
@@ -113,17 +103,6 @@ export const COLLECTIONS: Collection[] = [
     coverColor: 'bg-yellow-600',
     filePath: '/cards/philosophy/buddhism.txt',
     count: 50
-  },
-   {
-    id: 'wang-yangming',
-    name: '王阳明的知行合一',
-    nameEn: 'Wang Yangming',
-    description: '心学核心：关于致良知、知行合一的个人修身与实践哲学。',
-    category: CategoryId.PHILOSOPHY,
-    author: 'Wang Yangming',
-    coverColor: 'bg-indigo-700', // 宁静的靛蓝色，代表内在心学
-    filePath: '/cards/philosophy/wang-yangming.txt',
-    count: 50 
   },
   {
     id: 'zen',
@@ -158,6 +137,17 @@ export const COLLECTIONS: Collection[] = [
     author: 'Dou Dou',
     coverColor: 'bg-gray-700',
     filePath: '/cards/literature/tiandao.txt',
+    count: 50
+  },
+  {
+    id: 'wang-yangming',
+    name: '王阳明的知行合一',
+    nameEn: 'Wang Yangming',
+    description: '心学核心：关于致良知、知行合一的个人修身与实践哲学。',
+    category: CategoryId.PHILOSOPHY,
+    author: 'Wang Yangming',
+    coverColor: 'bg-indigo-700',
+    filePath: '/cards/philosophy/wang-yangming.txt',
     count: 50
   },
   {
