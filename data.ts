@@ -1,18 +1,7 @@
 import { Collection, CategoryId } from './types';
 
 export const COLLECTIONS: Collection[] = [
-  // --- Entrepreneurs ---
-  {
-    id: 'naval',
-    name: '纳瓦尔宝典',
-    nameEn: 'Naval Ravikant',
-    description: '关于财富与幸福的指南。',
-    category: CategoryId.ENTREPRENEUR,
-    author: 'Naval Ravikant',
-    coverColor: 'bg-blue-500',
-    filePath: '/cards/entrepreneur/naval.txt',
-    count: 50
-  },
+  // --- 创业家与商业洞察 (ENTREPRENEUR) ---
   {
     id: 'duan-yongping',
     name: '段永平语录',
@@ -22,17 +11,39 @@ export const COLLECTIONS: Collection[] = [
     author: 'Duan Yongping',
     coverColor: 'bg-green-600',
     filePath: '/cards/entrepreneur/duan-yongping.txt',
-    count: 30
+    count: 60
   },
   {
-    id: 'zhang-yiming',
-    name: '张一鸣语录',
-    nameEn: 'Zhang Yiming',
-    description: '字节跳动创始人的深度思考与平常心。',
+    id: 'elon-musk',
+    name: '马斯克第一性原理',
+    nameEn: 'Elon Musk',
+    description: '火星人的物理学思维与疯狂愿景。',
     category: CategoryId.ENTREPRENEUR,
-    author: 'Zhang Yiming',
-    coverColor: 'bg-indigo-500',
-    filePath: '/cards/entrepreneur/zhang-yiming.txt',
+    author: 'Elon Musk',
+    coverColor: 'bg-slate-800',
+    filePath: '/cards/entrepreneur/elon-musk.txt',
+    count: 100
+  },
+  {
+    id: 'munger',
+    name: '查理·芒格',
+    nameEn: 'Charlie Munger',
+    description: '普世智慧、多元思维模型与投资哲学。',
+    category: CategoryId.ENTREPRENEUR,
+    author: 'Charlie Munger',
+    coverColor: 'bg-amber-700',
+    filePath: '/cards/entrepreneur/munger.txt',
+    count: 50
+  },
+  {
+    id: 'naval',
+    name: '纳瓦尔宝典',
+    nameEn: 'Naval Ravikant',
+    description: '关于财富与幸福的指南。',
+    category: CategoryId.ENTREPRENEUR,
+    author: 'Naval Ravikant',
+    coverColor: 'bg-blue-500',
+    filePath: '/cards/entrepreneur/naval.txt',
     count: 50
   },
   {
@@ -47,30 +58,29 @@ export const COLLECTIONS: Collection[] = [
     count: 50
   },
   {
-    id: 'elon-musk',
-    name: '马斯克第一性原理',
-    nameEn: 'Elon Musk',
-    description: '火星人的物理学思维与疯狂愿景。',
+    id: 'zhang-yiming',
+    name: '张一鸣语录',
+    nameEn: 'Zhang Yiming',
+    description: '字节跳动创始人的深度思考与平常心。',
     category: CategoryId.ENTREPRENEUR,
-    author: 'Elon Musk',
-    coverColor: 'bg-slate-800',
-    filePath: '/cards/entrepreneur/elon-musk.txt',
-    count: 50
-  },
-  {
-    id: 'munger',
-    name: '查理·芒格',
-    nameEn: 'Charlie Munger',
-    description: '普世智慧、多元思维模型与投资哲学。',
-    category: CategoryId.ENTREPRENEUR,
-    author: 'Charlie Munger',
-    coverColor: 'bg-amber-700',
-    filePath: '/cards/entrepreneur/munger.txt',
+    author: 'Zhang Yiming',
+    coverColor: 'bg-indigo-500',
+    filePath: '/cards/entrepreneur/zhang-yiming.txt',
     count: 50
   },
 
-  // --- Philosophy ---
-  
+  // --- 哲学与思想 (PHILOSOPHY) ---
+  {
+    id: 'buddhism',
+    name: '佛学智慧',
+    nameEn: 'Buddhism',
+    description: '缘起性空，明心见性。',
+    category: CategoryId.PHILOSOPHY,
+    author: 'Buddha',
+    coverColor: 'bg-yellow-600',
+    filePath: '/cards/philosophy/buddhism.txt',
+    count: 50
+  },
   {
     id: 'confucius',
     name: '论语·孔子',
@@ -80,6 +90,17 @@ export const COLLECTIONS: Collection[] = [
     author: 'Kong Zi',
     coverColor: 'bg-amber-600',
     filePath: '/cards/philosophy/confucius.txt',
+    count: 50
+  },
+  {
+    id: 'mao',
+    name: '毛泽东选集',
+    nameEn: 'Mao Zedong',
+    description: '关于矛盾论、实践论、持久战与人民战争的政治、战略与辩证哲学',
+    category: CategoryId.PHILOSOPHY,
+    author: 'Mao Zedong',
+    coverColor: 'bg-red-600',
+    filePath: '/cards/philosophy/mao.txt',
     count: 50
   },
   {
@@ -94,14 +115,14 @@ export const COLLECTIONS: Collection[] = [
     count: 50
   },
   {
-    id: 'buddhism',
-    name: '佛学智慧',
-    nameEn: 'Buddhism',
-    description: '缘起性空，明心见性。',
+    id: 'wang-yangming',
+    name: '王阳明的知行合一',
+    nameEn: 'Wang Yangming',
+    description: '心学核心：关于致良知、知行合一的个人修身与实践哲学。',
     category: CategoryId.PHILOSOPHY,
-    author: 'Buddha',
-    coverColor: 'bg-yellow-600',
-    filePath: '/cards/philosophy/buddhism.txt',
+    author: 'Wang Yangming',
+    coverColor: 'bg-indigo-700',
+    filePath: '/cards/philosophy/wang-yangming.txt',
     count: 50
   },
   {
@@ -115,19 +136,30 @@ export const COLLECTIONS: Collection[] = [
     filePath: '/cards/philosophy/zen.txt',
     count: 50
   },
+
+  // --- 文学与经典 (LITERATURE) ---
   {
-    id: 'mao',
-    name: '毛泽东选集',
-    nameEn: 'Mao Zedong',
-    description: '战略战术、辩证法与实事求是。',
-    category: CategoryId.PHILOSOPHY,
-    author: 'Mao Zedong',
-    coverColor: 'bg-red-600',
-    filePath: '/cards/philosophy/mao.txt',
+    id: 'moyan',
+    name: '莫言作品：魔幻与乡土',
+    nameEn: 'Mo Yan: The Red Sorghum',
+    description: '中国魔幻现实主义大师关于人性、土地、历史与生命的深刻思辨。',
+    category: CategoryId.LITERATURE,
+    author: 'Mo Yan',
+    coverColor: 'bg-orange-600',
+    filePath: '/cards/literature/moyan.txt',
     count: 50
   },
-
-  // --- Literature ---
+  {
+    id: 'su-dongpo',
+    name: '苏东坡：旷达人生哲学',
+    nameEn: 'Su Dongpo\'s Philosophy',
+    description: '融诗词、散文于一体的旷达人生观；关于豁达、起伏与自我和解的古典智慧。',
+    category: CategoryId.LITERATURE,
+    author: '苏轼 (Su Shi)',
+    coverColor: 'bg-amber-700',
+    filePath: '/cards/literature/su-dongpo.txt',
+    count: 30
+  },
   {
     id: 'tiandao',
     name: '天道 (遥远的救世主)',
@@ -140,49 +172,27 @@ export const COLLECTIONS: Collection[] = [
     count: 50
   },
   {
-    id: 'wang-yangming',
-    name: '王阳明的知行合一',
-    nameEn: 'Wang Yangming',
-    description: '心学核心：关于致良知、知行合一的个人修身与实践哲学。',
-    category: CategoryId.PHILOSOPHY,
-    author: 'Wang Yangming',
-    coverColor: 'bg-indigo-700',
-    filePath: '/cards/philosophy/wang-yangming.txt',
-    count: 50
-  },
-  {
-    id: 'moyan',
-    name: '莫言作品',
-    nameEn: 'Mo Yan',
-    description: '魔幻现实主义的中国乡土与人性。',
-    category: CategoryId.LITERATURE,
-    author: 'Mo Yan',
-    coverColor: 'bg-orange-600',
-    filePath: '/cards/literature/moyan.txt',
-    count: 50
-  },
-  {
     id: 'yuhua',
-    name: '余华·活着',
-    nameEn: 'Yu Hua',
-    description: '人是为了活着本身而活着。',
+    name: '余华语录：活着与人性',
+    nameEn: 'Yu Hua: To Live',
+    description: '中国当代文学大师关于生命、苦难、时间与人性底色的深刻洞察。',
     category: CategoryId.LITERATURE,
-    author: 'Yu Hua',
-    coverColor: 'bg-zinc-600',
+    author: '余华',
+    coverColor: 'bg-stone-800',
     filePath: '/cards/literature/yuhua.txt',
     count: 50
   },
     
-  // --- Historical ---
+  // --- 历史与斯多葛 (HISTORY) ---
   {
-    id: 'zeng-guofan',
-    name: '曾国藩的修身之道',
-    nameEn: 'Zeng Guofan',
-    description: '晚清第一名臣的自我约束、渐进积累与组织管理智慧。',
+    id: 'marcus-aurelius',
+    name: '马可·奥勒留《沉思录》',
+    nameEn: 'Marcus Aurelius',
+    description: '古罗马帝王的斯多葛哲学：关于理性、责任和接受命运的指引。',
     category: CategoryId.HISTORY,
-    author: 'Zeng Guofan',
-    coverColor: 'bg-red-800',
-    filePath: '/cards/history/zeng-guofan.txt',
+    author: 'Marcus Aurelius',
+    coverColor: 'bg-blue-700',
+    filePath: '/cards/history/marcus-aurelius.txt',
     count: 50
   },
   {
@@ -197,14 +207,14 @@ export const COLLECTIONS: Collection[] = [
     count: 50
   },
   {
-    id: 'marcus-aurelius',
-    name: '马可·奥勒留《沉思录》',
-    nameEn: 'Marcus Aurelius',
-    description: '古罗马帝王的斯多葛哲学：关于理性、责任和接受命运的指引。',
+    id: 'zeng-guofan',
+    name: '曾国藩的修身之道',
+    nameEn: 'Zeng Guofan',
+    description: '晚清第一名臣的自我约束、渐进积累与组织管理智慧。',
     category: CategoryId.HISTORY,
-    author: 'Marcus Aurelius',
-    coverColor: 'bg-blue-700',
-    filePath: '/cards/history/marcus-aurelius.txt',
+    author: 'Zeng Guofan',
+    coverColor: 'bg-red-800',
+    filePath: '/cards/history/zen-guofan.txt',
     count: 50
   }
 ];
