@@ -13,7 +13,6 @@ export const RandomReview: React.FC = () => {
   const [currentNote, setCurrentNote] = useState<Note | null>(null);
   const [sourceCollection, setSourceCollection] = useState<Collection | null>(null);
   const [loading, setLoading] = useState(true);
-  const [animating, setAnimating] = useState(false);
   const mountedRef = useRef(false);
 
   // Helper to clean up source string
@@ -26,12 +25,10 @@ export const RandomReview: React.FC = () => {
     // Prevent infinite loops
     if (retryCount > 3) {
       setLoading(false);
-      setAnimating(false);
       return;
     }
 
     setLoading(true);
-    setAnimating(true);
     
     try {
       if (COLLECTIONS.length === 0) throw new Error("No collections available");
@@ -54,7 +51,6 @@ export const RandomReview: React.FC = () => {
         setSourceCollection(randomCollection);
         
         setLoading(false);
-        setAnimating(false);
       } else {
         console.warn(`Collection ${randomCollection.id} is empty, retrying...`);
         pickRandomNote(retryCount + 1);
