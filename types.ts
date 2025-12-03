@@ -4,6 +4,7 @@ export interface Note {
   timestamp: string; // YYYY-MM-DD HH:mm:ss
   tags?: string[];
   translation?: string; // For bilingual support (parsed from content if available)
+  source?: string; // New field for the origin/author/citation
 }
 
 export interface Collection {
