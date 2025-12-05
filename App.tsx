@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { HashRouter, Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 import { Sidebar } from './components/Sidebar';
 import { Home } from './pages/Home';
@@ -13,7 +13,11 @@ const MainLayout: React.FC = () => {
   const { theme, toggleTheme, language, setLanguage, searchQuery, setSearchQuery } = useApp();
   const [selectedCategory, setSelectedCategory] = useState<CategoryId | 'all'>('all');
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [showHeader, setShowHeader] = useState(true);
+  
   const navigate = useNavigate();
+  const mainRef = useRef<HTMLDivElement>(null);
+  const lastScrollY = useRef(0);
 
   // Unified handler for sidebar navigation
   const handleCategorySelect = (id: CategoryId | 'all') => {
@@ -22,11 +26,39 @@ const MainLayout: React.FC = () => {
     setIsSidebarOpen(false);
     navigate('/');
     // Scroll to top of the main content
-    const mainElement = document.querySelector('main');
-    if (mainElement) {
-      mainElement.scrollTo({ top: 0, behavior: 'smooth' });
+    if (mainRef.current) {
+      mainRef.current.scrollTo({ top: 0, behavior: 'smooth' });
     }
   };
+
+  // Scroll detection logic
+  useEffect(() => {
+    const mainElement = mainRef.current;
+    if (!mainElement) return;
+
+    const handleScroll = () => {
+      const currentScrollY = mainElement.scrollTop;
+      const scrollDiff = currentScrollY - lastScrollY.current;
+
+      // Logic:
+      // 1. If at the very top, always show header.
+      // 2. If scrolling down (diff > 0) and moved a bit (> 10px), hide header.
+      // 3. If scrolling up (diff < 0), show header.
+      
+      if (currentScrollY < 10) {
+        setShowHeader(true);
+      } else if (scrollDiff > 10) {
+        setShowHeader(false);
+      } else if (scrollDiff < -10) {
+        setShowHeader(true);
+      }
+
+      lastScrollY.current = currentScrollY;
+    };
+
+    mainElement.addEventListener('scroll', handleScroll, { passive: true });
+    return () => mainElement.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
     <div className="flex h-screen overflow-hidden bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-slate-100 font-sans transition-colors duration-200">
@@ -43,7 +75,12 @@ const MainLayout: React.FC = () => {
       <div className="flex-1 flex flex-col w-full md:ml-0 transition-all h-full relative">
         
         {/* Mobile Header / Toolbar */}
-        <header className="flex-shrink-0 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 px-6 py-4 flex items-center justify-between z-10">
+        {/* Added transition-all and negative margin logic for hiding */}
+        <header 
+          className={`flex-shrink-0 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 px-6 py-4 flex items-center justify-between z-20 transition-all duration-300 ease-in-out ${
+            showHeader ? 'translate-y-0 opacity-100 mt-0' : '-translate-y-full opacity-0 -mt-20 pointer-events-none'
+          }`}
+        >
           <div className="flex items-center gap-4">
              <button 
                onClick={() => setIsSidebarOpen(true)}
@@ -65,7 +102,16 @@ const MainLayout: React.FC = () => {
           </div>
 
           <div className="flex items-center gap-2 sm:gap-3">
-          
+             {/* Random Button (Mobile/Desktop Quick Access) */}
+             <button
+               onClick={() => navigate('/review')}
+               className="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 text-purple-500 hover:text-purple-600 dark:text-purple-400 transition-colors"
+               title={language === 'zh' ? '随机漫步' : 'Serendipity'}
+             >
+               <ICONS.Dices size={20} />
+             </button>
+
+             <div className="h-4 w-[1px] bg-slate-200 dark:bg-slate-700 mx-1"></div>
 
              {/* inBox App Official Site Link */}
              <a 
@@ -96,7 +142,11 @@ const MainLayout: React.FC = () => {
         </header>
 
         {/* Page Content */}
-        <main className="flex-1 overflow-y-auto overflow-x-hidden">
+        {/* Attached ref to main for scroll detection */}
+        <main 
+          ref={mainRef}
+          className="flex-1 overflow-y-auto overflow-x-hidden"
+        >
           <Routes>
             <Route path="/" element={<Home selectedCategory={selectedCategory} />} />
             <Route path="/collection/:id" element={<CollectionDetail />} />

@@ -6,7 +6,6 @@ import { ICONS } from '../constants';
 import { Card } from '../components/Card';
 import { Note } from '../types';
 import { parseTimestampNotes } from '../utils/parser';
-import { log } from '../utils/logger';
 import { loadNoteContent } from '../utils/loader';
 
 export const CollectionDetail: React.FC = () => {
@@ -40,11 +39,10 @@ export const CollectionDetail: React.FC = () => {
           setRawContent(text);
           const parsedNotes = parseTimestampNotes(text);
           setNotes(parsedNotes);
-          log.debug('detail loaded', { path: collection.filePath, length: text.length, notes: parsedNotes.length });
           setLoading(false);
         })
         .catch(err => {
-          log.error('detail load error', collection.filePath, err?.message || err);
+          console.error(err);
           setError(language === 'zh' ? '加载笔记失败，请确保文件存在。' : 'Failed to load notes. File might be missing.');
           setLoading(false);
         });
@@ -76,40 +74,40 @@ export const CollectionDetail: React.FC = () => {
     <div className="p-6 max-w-5xl mx-auto min-h-screen flex flex-col">
       {/* Header - Sticky & Hover Interaction */}
       <div className="sticky top-0 z-10 -mt-6 pt-6 pb-4 -mx-6 px-6 mb-6 bg-slate-50/95 dark:bg-slate-900/95 backdrop-blur-md border-b border-slate-200/50 dark:border-slate-800/50 transition-all shadow-sm group/header">
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 max-w-5xl mx-auto">
+        <div className="flex items-center justify-between gap-2 md:gap-4 max-w-5xl mx-auto">
           <button 
             onClick={() => navigate('/')}
-            className="flex items-center text-slate-500 hover:text-slate-900 dark:hover:text-white transition-all gap-2 px-3 py-2 -ml-3 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 group-hover/header:translate-x-1"
+            className="flex items-center text-slate-500 hover:text-slate-900 dark:hover:text-white transition-all gap-1.5 md:gap-2 px-2 md:px-3 py-2 -ml-2 md:-ml-3 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 flex-shrink-0"
             title={language === 'zh' ? '返回首页' : 'Back to Home'}
           >
-            <ICONS.ArrowLeft size={20} className="group-hover/header:scale-110 transition-transform" />
-            <span className="font-medium">{language === 'zh' ? '返回' : 'Back'}</span>
+            <ICONS.ArrowLeft size={20} className="md:group-hover/header:scale-110 transition-transform" />
+            <span className="font-medium text-sm md:text-base">{language === 'zh' ? '返回' : 'Back'}</span>
           </button>
 
-          <div className="flex items-center bg-slate-100 dark:bg-slate-800 p-1.5 rounded-xl self-start dark:border-blue-700/50 shadow-sm">
+          <div className="flex items-center bg-slate-100 dark:bg-slate-800 p-1 rounded-lg md:rounded-xl dark:border-blue-700/50 shadow-sm flex-shrink-0">
             <button
               onClick={() => setViewMode('cards')}
               aria-pressed={viewMode === 'cards'}
-              className={`px-4 py-1.5 rounded-md text-sm font-semibold transition-all flex items-center gap-2 ${
+              className={`px-3 md:px-4 py-1.5 rounded-md text-xs md:text-sm font-semibold transition-all flex items-center gap-1.5 md:gap-2 ${
                 viewMode === 'cards' 
                   ? 'bg-white dark:bg-slate-700 text-blue-600 dark:text-blue-400 shadow-sm ring-1 ring-black/5 dark:ring-white/10' 
                   : 'text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200'
               }`}
             >
-              <ICONS.BookOpen size={16} />
-              <span>{language === 'zh' ? '卡片视图' : 'Cards'}</span>
+              <ICONS.BookOpen size={14} className="md:w-4 md:h-4" />
+              <span>{language === 'zh' ? '卡片' : 'Cards'}</span>
             </button>
             <button
               onClick={() => setViewMode('raw')}
               aria-pressed={viewMode === 'raw'}
-              className={`px-4 py-1.5 rounded-md text-sm font-semibold transition-all flex items-center gap-2 ${
+              className={`px-3 md:px-4 py-1.5 rounded-md text-xs md:text-sm font-semibold transition-all flex items-center gap-1.5 md:gap-2 ${
                 viewMode === 'raw' 
                   ? 'bg-white dark:bg-slate-700 text-blue-600 dark:text-blue-400 shadow-sm ring-1 ring-black/5 dark:ring-white/10' 
                   : 'text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200'
               }`}
             >
-              <ICONS.Info size={16} />
-              <span>{language === 'zh' ? '时间戳源码' : 'Source'}</span>
+              <ICONS.Info size={14} className="md:w-4 md:h-4" />
+              <span>{language === 'zh' ? '源码' : 'Source'}</span>
             </button>
           </div>
         </div>
