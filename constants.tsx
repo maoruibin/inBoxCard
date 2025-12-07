@@ -18,7 +18,8 @@ import {
   ExternalLink,
   Info,
   Dices,
-  Shuffle
+  Shuffle,
+  Share2
 } from 'lucide-react';
 import { Category, CategoryId } from './types';
 
@@ -48,5 +49,6 @@ export const ICONS: Record<string, React.FC<any>> = {
   ExternalLink,
   Info,
   Dices,
-  Shuffle
+  Shuffle,
+  Share2
 };

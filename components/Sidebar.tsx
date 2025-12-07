@@ -133,10 +133,10 @@ export const Sidebar: React.FC<SidebarProps> = ({ selectedCategory, onSelectCate
              <div className="relative bg-slate-50 dark:bg-slate-800/50 p-4 rounded-2xl border border-slate-100 dark:border-slate-700/50 animate-fadeIn">
                 <button 
                   onClick={(e) => { e.stopPropagation(); setShowPromo(false); }}
-                  className="absolute top-2 right-2 text-slate-300 hover:text-slate-500 dark:text-slate-600 dark:hover:text-slate-400 transition-colors p-1"
+                  className="absolute top-0 right-0 text-slate-300 hover:text-slate-500 dark:text-slate-600 dark:hover:text-slate-400 transition-colors p-4 z-20"
                   title={language === 'zh' ? '关闭' : 'Close'}
                 >
-                  <ICONS.X size={14} />
+                  <ICONS.X size={16} />
                 </button>
                 <p className="text-xs font-bold text-slate-700 dark:text-slate-200 mb-3 flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
@@ -167,7 +167,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ selectedCategory, onSelectCate
            </a>
 
            <div className="text-xs text-slate-300 dark:text-slate-600 text-center font-mono">
-             Designed by Gemini&咕咚
+             Designed by Gemini & 咕咚
            </div>
         </div>
       </div>
