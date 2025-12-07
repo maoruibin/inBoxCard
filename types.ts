@@ -37,6 +37,7 @@ export interface Category {
 export type Language = 'zh' | 'en';
 export type Theme = 'light' | 'dark';
 
+
 export interface AppContextType {
   language: Language;
   setLanguage: (lang: Language) => void;
@@ -44,4 +45,6 @@ export interface AppContextType {
   toggleTheme: () => void;
   searchQuery: string;
   setSearchQuery: (query: string) => void;
+  installPrompt: any; // Holds the beforeinstallprompt event
+  handleInstallClick: () => void;
 }

@@ -7,6 +7,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   const [language, setLanguage] = useState<Language>('zh');
   const [theme, setTheme] = useState<Theme>('light');
   const [searchQuery, setSearchQuery] = useState<string>('');
+  const [installPrompt, setInstallPrompt] = useState<any>(null);
 
   useEffect(() => {
     // Check system preference or local storage on mount
@@ -16,6 +17,20 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
       setTheme('dark');
     }
+
+    // PWA Install Prompt Listener
+    const handleBeforeInstallPrompt = (e: Event) => {
+      // Prevent the mini-infobar from appearing on mobile
+      e.preventDefault();
+      // Stash the event so it can be triggered later.
+      setInstallPrompt(e);
+    };
+
+    window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
+
+    return () => {
+      window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
+    };
   }, []);
 
   useEffect(() => {
@@ -32,8 +47,34 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     setTheme(prev => prev === 'light' ? 'dark' : 'light');
   };
 
+  const handleInstallClick = () => {
+    if (!installPrompt) return;
+    // Show the install prompt
+    installPrompt.prompt();
+    // Wait for the user to respond to the prompt
+    installPrompt.userChoice.then((choiceResult: any) => {
+      if (choiceResult.outcome === 'accepted') {
+        console.log('User accepted the install prompt');
+      } else {
+        console.log('User dismissed the install prompt');
+      }
+      // We no longer need the prompt. Clear it? 
+      // Usually better to keep it null until next event, but some browsers don't refire.
+      setInstallPrompt(null);
+    });
+  };
+
   return (
-    <AppContext.Provider value={{ language, setLanguage, theme, toggleTheme, searchQuery, setSearchQuery }}>
+    <AppContext.Provider value={{ 
+      language, 
+      setLanguage, 
+      theme, 
+      toggleTheme, 
+      searchQuery, 
+      setSearchQuery,
+      installPrompt,
+      handleInstallClick
+    }}>
       {children}
     </AppContext.Provider>
   );

@@ -12,7 +12,7 @@ interface SidebarProps {
 }
 
 export const Sidebar: React.FC<SidebarProps> = ({ selectedCategory, onSelectCategory, isOpen, onClose }) => {
-  const { language } = useApp();
+  const { language, installPrompt, handleInstallClick } = useApp();
   const [showPromo, setShowPromo] = useState(true);
   const navigate = useNavigate();
   const location = useLocation();
@@ -116,6 +116,18 @@ export const Sidebar: React.FC<SidebarProps> = ({ selectedCategory, onSelectCate
 
         {/* Fixed Footer */}
         <div className="p-6 border-t border-slate-100 dark:border-slate-800 flex-shrink-0 space-y-4 bg-white dark:bg-slate-900 z-10">
+           
+           {/* PWA Install Button - Only shows if installable */}
+           {installPrompt && (
+             <button
+               onClick={handleInstallClick}
+               className="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs shadow-md transition-all active:scale-95 animate-pulse-slow"
+             >
+               <ICONS.Download size={16} />
+               <span>{language === 'zh' ? '安装到桌面' : 'Install App'}</span>
+             </button>
+           )}
+
            {/* GongZhongHao Promo */}
            {showPromo && (
              <div className="relative bg-slate-50 dark:bg-slate-800/50 p-4 rounded-2xl border border-slate-100 dark:border-slate-700/50 animate-fadeIn">
@@ -155,7 +167,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ selectedCategory, onSelectCate
            </a>
 
            <div className="text-xs text-slate-300 dark:text-slate-600 text-center font-mono">
-             Designed by Gemini & 咕咚
+             Designed by Gemini&咕咚
            </div>
         </div>
       </div>
