@@ -1,4 +1,4 @@
-# inBox Note Hub (卡片笔记中心)
+# inBox Card (知识卡片)
 
 > 探索精粹，一键收纳。 Curated knowledge, instantly captured.
 
