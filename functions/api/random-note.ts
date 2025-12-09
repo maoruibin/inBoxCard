@@ -22,8 +22,10 @@ export async function onRequest(context: any): Promise<Response> {
       const randomIndex = Math.floor(Math.random() * COLLECTIONS.length);
       const collection = COLLECTIONS[randomIndex];
 
-      const fileUrl = new URL(collection.filePath.startsWith('/') ? collection.filePath : `/${collection.filePath}`, origin).toString();
-      const res = await fetch(fileUrl);
+      const path = collection.filePath.startsWith('/') ? collection.filePath : `/${collection.filePath}`;
+      // Prefer fetching via Pages ASSETS binding to avoid HTML fallback/recursion
+      const assetReq = new Request(new URL(path, origin).toString(), { method: 'GET' });
+      const res = context?.env?.ASSETS ? await context.env.ASSETS.fetch(assetReq) : await fetch(assetReq);
       if (!res.ok) {
         continue;
       }
@@ -68,4 +70,3 @@ function json(data: unknown, status = 200): Response {
     }
   });
 }
-
