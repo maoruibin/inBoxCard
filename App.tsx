@@ -113,17 +113,17 @@ const MainLayout: React.FC = () => {
 
              <div className="h-4 w-[1px] bg-slate-200 dark:bg-slate-700 mx-1"></div>
 
-             {/* inBox App Official Site Link */}
-             <a 
-               href="https://doc.gudong.site/inbox/" 
-               target="_blank" 
-               rel="noopener noreferrer"
-               className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-400 transition-colors text-xs font-medium mr-1"
-               title={language === 'zh' ? '访问 inBox 官网' : 'Visit inBox Website'}
-             >
-               <span>inBox App</span>
-               <ICONS.ExternalLink size={14} />
-             </a>
+            {/* inBox App Official Site Link */}
+            <a 
+              href="https://doc.gudong.site/inbox/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-400 transition-colors text-xs font-medium mr-1"
+              title={language === 'zh' ? '访问 inBox 官网' : 'Visit inBox Website'}
+            >
+              <span>{language === 'zh' ? 'inBox 笔记' : 'inBox App'}</span>
+              <ICONS.ExternalLink size={14} />
+            </a>
 
              <button 
                onClick={() => setLanguage(language === 'zh' ? 'en' : 'zh')}
