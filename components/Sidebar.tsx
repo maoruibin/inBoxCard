@@ -12,7 +12,7 @@ interface SidebarProps {
 }
 
 export const Sidebar: React.FC<SidebarProps> = ({ selectedCategory, onSelectCategory, isOpen, onClose }) => {
-  const { language, installPrompt, handleInstallClick } = useApp();
+  const { language, handleInstallClick } = useApp();
   const [showPromo, setShowPromo] = useState(true);
   const navigate = useNavigate();
   const location = useLocation();
@@ -138,16 +138,14 @@ export const Sidebar: React.FC<SidebarProps> = ({ selectedCategory, onSelectCate
         {/* Fixed Footer */}
         <div className="p-6 border-t border-slate-100 dark:border-slate-800 flex-shrink-0 space-y-4 bg-white dark:bg-slate-900 z-10">
            
-           {/* PWA Install Button - Only shows if installable and hidden on desktop */}
-           {installPrompt && (
-             <button
-               onClick={handleInstallClick}
-               className="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs shadow-md transition-all active:scale-95 animate-pulse-slow md:hidden"
-             >
-               <ICONS.Download size={16} />
-               <span>{language === 'zh' ? '安装到桌面' : 'Install App'}</span>
-             </button>
-           )}
+           {/* PWA Install Button - Mobile only */}
+           <button
+             onClick={handleInstallClick}
+             className="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs shadow-md transition-all active:scale-95 animate-pulse-slow md:hidden"
+           >
+             <ICONS.Download size={16} />
+             <span>{language === 'zh' ? '安装到桌面' : 'Install App'}</span>
+           </button>
 
            {/* GongZhongHao Promo */}
            {showPromo && (
