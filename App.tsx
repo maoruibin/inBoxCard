@@ -8,7 +8,7 @@ import { RandomReview } from './pages/RandomReview';
 import { Developer } from './pages/Developer';
 import { AppProvider, useApp } from './context';
 import { CategoryId } from './types';
-import { ICONS } from '../constants';
+import { ICONS } from './constants';
 
 const MainLayout: React.FC = () => {
   const { theme, toggleTheme, language, setLanguage, searchQuery, setSearchQuery } = useApp();
