@@ -1,4 +1,9 @@
 <svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
   <rect x="32" y="32" width="448" height="448" rx="128" fill="#2563EB"/>
-  <path d="M256 112C268 200 296 236 392 256C296 276 268 312 256 400C244 312 216 276 120 256C216 236 244 200 256 112Z" fill="white"/>
+  <!-- Back Card (Shadow Layer) -->
+  <rect x="196" y="150" width="180" height="240" rx="32" fill="white" fill-opacity="0.35"/>
+  <!-- Front Card -->
+  <rect x="136" y="100" width="180" height="240" rx="32" fill="white"/>
+  <!-- Wisdom Symbol (Stylized Star/Spark) on Front Card - Blue -->
+  <path d="M226 150 C 226 150, 240 190, 266 200 C 240 210, 226 250, 226 250 C 226 250, 212 210, 186 200 C 212 190, 226 150, 226 150 Z" fill="#2563EB"/>
 </svg>
