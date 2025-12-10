@@ -14,7 +14,7 @@ export default defineConfig(({ mode }) => {
       react(),
       VitePWA({
         registerType: 'autoUpdate',
-        includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'mask-icon.svg'],
+        includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'mask-icon.svg', 'logo.svg'],
         manifest: {
           name: 'inBox Card',
           short_name: 'inBox',
@@ -26,13 +26,13 @@ export default defineConfig(({ mode }) => {
           orientation: 'portrait',
           icons: [
             {
-              src: 'https://gudong.s3.bitiful.net/icon/inbox.svg?no-wait=on',
+              src: '/logo.svg',
               sizes: '192x192',
               type: 'image/svg+xml',
               purpose: 'any maskable'
             },
             {
-              src: 'https://gudong.s3.bitiful.net/icon/inbox.svg?no-wait=on',
+              src: '/logo.svg',
               sizes: '512x512',
               type: 'image/svg+xml',
               purpose: 'any maskable'
@@ -52,7 +52,8 @@ export default defineConfig(({ mode }) => {
       }),
       viteStaticCopy({
         targets: [
-          { src: 'cards', dest: '' }
+          { src: 'cards', dest: '' },
+          { src: 'logo.svg', dest: '' }
         ]
       })
     ],

@@ -52,7 +52,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ selectedCategory, onSelectCate
             onClick={() => { onSelectCategory('all'); onClose(); }}
           >
             <img 
-              src="https://gudong.s3.bitiful.net/icon/inbox.svg?no-wait=on" 
+              src="/logo.svg" 
               alt="inBox Logo" 
               className="w-8 h-8 object-contain"
             />
