@@ -5,9 +5,10 @@ import { Home } from './pages/Home';
 import { CollectionDetail } from './pages/CollectionDetail';
 import { Contribute } from './pages/Contribute';
 import { RandomReview } from './pages/RandomReview';
+import { Developer } from './pages/Developer';
 import { AppProvider, useApp } from './context';
 import { CategoryId } from './types';
-import { ICONS } from './constants';
+import { ICONS } from '../constants';
 
 const MainLayout: React.FC = () => {
   const { theme, toggleTheme, language, setLanguage, searchQuery, setSearchQuery } = useApp();
@@ -152,6 +153,7 @@ const MainLayout: React.FC = () => {
             <Route path="/collection/:id" element={<CollectionDetail />} />
             <Route path="/contribute" element={<Contribute />} />
             <Route path="/review" element={<RandomReview />} />
+            <Route path="/developer" element={<Developer />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </main>

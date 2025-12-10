@@ -22,7 +22,13 @@ export const Sidebar: React.FC<SidebarProps> = ({ selectedCategory, onSelectCate
     onClose();
   };
 
+  const handleDeveloperClick = () => {
+    navigate('/developer');
+    onClose();
+  };
+
   const isReviewPage = location.pathname === '/review';
+  const isDeveloperPage = location.pathname === '/developer';
 
   return (
     <>
@@ -60,7 +66,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ selectedCategory, onSelectCate
             <button
               onClick={() => { onSelectCategory('all'); onClose(); }}
               className={`w-full flex items-center space-x-3 px-4 py-3 rounded-xl transition-all ${
-                selectedCategory === 'all' && !isReviewPage
+                selectedCategory === 'all' && !isReviewPage && !isDeveloperPage
                   ? 'bg-blue-50 text-blue-600 dark:bg-blue-900/20 dark:text-blue-400 font-medium shadow-sm' 
                   : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50'
               }`}
@@ -86,6 +92,21 @@ export const Sidebar: React.FC<SidebarProps> = ({ selectedCategory, onSelectCate
               <span>{language === 'zh' ? '随机漫步' : 'Serendipity'}</span>
             </button>
 
+            {/* Developer API Button */}
+            <button
+              onClick={handleDeveloperClick}
+              className={`w-full flex items-center space-x-3 px-4 py-3 rounded-xl transition-all ${
+                isDeveloperPage
+                  ? 'bg-emerald-50 text-emerald-600 dark:bg-emerald-900/20 dark:text-emerald-400 font-medium shadow-sm' 
+                  : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50'
+              }`}
+            >
+              <span className="w-5 h-5 flex items-center justify-center">
+                <ICONS.Terminal size={18} />
+              </span>
+              <span>{language === 'zh' ? '开放 API' : 'Open API'}</span>
+            </button>
+
             <div className="my-4 border-t border-slate-100 dark:border-slate-800/50" />
             
             <div className="space-y-1">
@@ -99,7 +120,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ selectedCategory, onSelectCate
                     key={category.id}
                     onClick={() => { onSelectCategory(category.id); onClose(); }}
                     className={`w-full flex items-center space-x-3 px-4 py-3 rounded-xl transition-all ${
-                      selectedCategory === category.id && !isReviewPage
+                      selectedCategory === category.id && !isReviewPage && !isDeveloperPage
                         ? 'bg-blue-50 text-blue-600 dark:bg-blue-900/20 dark:text-blue-400 font-medium shadow-sm' 
                         : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50'
                     }`}
@@ -133,7 +154,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ selectedCategory, onSelectCate
              <div className="relative bg-slate-50 dark:bg-slate-800/50 p-4 rounded-2xl border border-slate-100 dark:border-slate-700/50 animate-fadeIn">
                 <button 
                   onClick={(e) => { e.stopPropagation(); setShowPromo(false); }}
-                  className="absolute top-0 right-0 text-slate-300 hover:text-slate-500 dark:text-slate-600 dark:hover:text-slate-400 transition-colors p-4 z-20"
+                  className="absolute top-0 right-0 p-4 text-slate-300 hover:text-slate-500 dark:text-slate-600 dark:hover:text-slate-400 transition-colors z-20"
                   title={language === 'zh' ? '关闭' : 'Close'}
                 >
                   <ICONS.X size={16} />
