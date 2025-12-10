@@ -1,9 +1,13 @@
 <svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect x="32" y="32" width="448" height="448" rx="128" fill="#2563EB"/>
-  <!-- Back Card (Shadow Layer) -->
-  <rect x="196" y="150" width="180" height="240" rx="32" fill="white" fill-opacity="0.35"/>
-  <!-- Front Card -->
-  <rect x="136" y="100" width="180" height="240" rx="32" fill="white"/>
-  <!-- Wisdom Symbol (Stylized Star/Spark) on Front Card - Blue -->
-  <path d="M226 150 C 226 150, 240 190, 266 200 C 240 210, 226 250, 226 250 C 226 250, 212 210, 186 200 C 212 190, 226 150, 226 150 Z" fill="#2563EB"/>
+  <!-- App Icon Background: Brand Blue -->
+  <rect width="512" height="512" rx="110" fill="#2563EB"/>
+  
+  <!-- The Card: White, Centered, Rounded -->
+  <rect x="106" y="86" width="300" height="340" rx="40" fill="white"/>
+  
+  <!-- Main Symbol: Elongated North Star (Distinct from Gemini's square star) -->
+  <path d="M256 145 C 256 145, 276 215, 316 250 C 276 285, 256 355, 256 355 C 256 355, 236 285, 196 250 C 236 215, 256 145, 256 145 Z" fill="#2563EB"/>
+  
+  <!-- Secondary Symbol: Small Sparkle (Adds detail and meaning) -->
+  <path d="M340 130 C 340 130, 346 150, 360 160 C 346 170, 340 190, 340 190 C 340 190, 334 170, 320 160 C 334 150, 340 130, 340 130 Z" fill="#2563EB"/>
 </svg>
