@@ -14,6 +14,28 @@ export const COLLECTIONS: Collection[] = [
     count: 60
   },
   {
+    id: 'steve-jobs',
+    name: '乔布斯的现实扭曲力场',
+    nameEn: 'Steve Jobs',
+    description: '关于极致产品、设计美学与活着就是为了改变世界的执着。',
+    category: CategoryId.ENTREPRENEUR,
+    author: 'Steve Jobs',
+    coverColor: 'bg-zinc-800',
+    filePath: '/cards/entrepreneur/steve-jobs.txt',
+    count: 30
+  },
+  {
+    id: 'paul-graham',
+    name: '保罗·格雷厄姆：黑客与画家',
+    nameEn: 'Paul Graham',
+    description: '硅谷创业教父关于创业、黑客精神与财富创造的硬核智慧。',
+    category: CategoryId.ENTREPRENEUR,
+    author: 'Paul Graham',
+    coverColor: 'bg-orange-500',
+    filePath: '/cards/entrepreneur/paul-graham.txt',
+    count: 30
+  },
+  {
     id: 'elon-musk',
     name: '马斯克第一性原理',
     nameEn: 'Elon Musk',
@@ -70,6 +92,17 @@ export const COLLECTIONS: Collection[] = [
   },
 
   // --- 哲学与思想 (PHILOSOPHY) ---
+  {
+    id: 'nietzsche',
+    name: '尼采：重估一切价值',
+    nameEn: 'Friedrich Nietzsche',
+    description: '上帝已死，超人当立。关于强力意志、痛苦与酒神精神的狂野哲学。',
+    category: CategoryId.PHILOSOPHY,
+    author: 'Nietzsche',
+    coverColor: 'bg-fuchsia-800',
+    filePath: '/cards/philosophy/nietzsche.txt',
+    count: 30
+  },
   {
     id: 'buddhism',
     name: '佛学智慧',
@@ -139,6 +172,17 @@ export const COLLECTIONS: Collection[] = [
 
   // --- 文学与经典 (LITERATURE) ---
   {
+    id: 'luxun',
+    name: '鲁迅：呐喊与彷徨',
+    nameEn: 'Lu Xun',
+    description: '中国现代文学的灵魂，直面惨淡人生的清醒剂与投枪。',
+    category: CategoryId.LITERATURE,
+    author: 'Lu Xun',
+    coverColor: 'bg-stone-700',
+    filePath: '/cards/literature/luxun.txt',
+    count: 30
+  },
+  {
     id: 'moyan',
     name: '莫言作品：魔幻与乡土',
     nameEn: 'Mo Yan: The Red Sorghum',
@@ -184,6 +228,17 @@ export const COLLECTIONS: Collection[] = [
   },
     
   // --- 历史与斯多葛 (HISTORY) ---
+  {
+    id: 'caocao',
+    name: '曹操：乱世实用主义',
+    nameEn: 'Cao Cao',
+    description: '魏武挥鞭的霸气与“唯才是举”的实用主义政治哲学。',
+    category: CategoryId.HISTORY,
+    author: 'Cao Cao',
+    coverColor: 'bg-red-900',
+    filePath: '/cards/history/caocao.txt',
+    count: 30
+  },
   {
     id: 'marcus-aurelius',
     name: '马可·奥勒留《沉思录》',

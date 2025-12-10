@@ -5,10 +5,10 @@ import { ICONS } from '../constants';
 
 const SHOWCASE_DATA = [
   {
-    name: 'Thinking 思绪',
+    name: 'Echo | 回响',
     desc: '交流笔记方法、工具的极简小社群',
     descEn: 'A minimalist thinking log tool displaying random inspiration.',
-    url: 'https://thinking.gudong.site/',
+    url: 'https://echo.gudong.site/',
     status: 'live'
   },
   // Add more here in the future
