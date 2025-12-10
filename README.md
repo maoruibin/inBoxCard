@@ -66,6 +66,10 @@
 },
 ```
 
+### 运行
+> npm run build && npx wrangler pages dev dist
+
+
 ### 3. 提交 PR
 将修改提交 Pull Request 到本仓库。**PR 审核通过后，我会进行合并并发布更新。**
 
