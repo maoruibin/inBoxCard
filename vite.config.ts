@@ -16,7 +16,7 @@ export default defineConfig(({ mode }) => {
         registerType: 'autoUpdate',
         includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'mask-icon.svg'],
         manifest: {
-          name: 'inBox Note Hub',
+          name: 'inBox Card',
           short_name: 'inBox',
           description: 'A community-driven knowledge card repository.',
           theme_color: '#ffffff',
