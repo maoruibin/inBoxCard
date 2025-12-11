@@ -20,7 +20,8 @@ import {
   Dices,
   Shuffle,
   Share2,
-  Terminal
+  Terminal,
+  Check
 } from 'lucide-react';
 import { Category, CategoryId } from './types';
 
@@ -52,5 +53,6 @@ export const ICONS: Record<string, React.FC<any>> = {
   Dices,
   Shuffle,
   Share2,
-  Terminal
+  Terminal,
+  Check
 };

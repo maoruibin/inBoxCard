@@ -9,6 +9,18 @@ import { ICONS } from '../constants';
 import { QRCodeSVG } from 'qrcode.react';
 import html2canvas from 'html2canvas';
 
+// Helper: Convert Base64 DataURI to Blob for clipboard writing
+const dataURItoBlob = (dataURI: string) => {
+  const byteString = atob(dataURI.split(',')[1]);
+  const mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+  const ab = new ArrayBuffer(byteString.length);
+  const ia = new Uint8Array(ab);
+  for (let i = 0; i < byteString.length; i++) {
+    ia[i] = byteString.charCodeAt(i);
+  }
+  return new Blob([ab], {type: mimeString});
+};
+
 export const RandomReview: React.FC = () => {
   const { language } = useApp();
   const navigate = useNavigate();
@@ -20,6 +32,7 @@ export const RandomReview: React.FC = () => {
   // Preview State
   const [previewImage, setPreviewImage] = useState<string | null>(null);
   const [showPreview, setShowPreview] = useState(false);
+  const [isCopyingImg, setIsCopyingImg] = useState(false);
   
   const mountedRef = useRef(false);
   const exportRef = useRef<HTMLDivElement>(null);
@@ -109,6 +122,26 @@ export const RandomReview: React.FC = () => {
     link.download = `inbox-card-${currentNote?.id || Date.now()}.png`;
     link.click();
     setShowPreview(false);
+  };
+
+  // Copy Image Logic
+  const handleCopyImage = async () => {
+    if (!previewImage || isCopyingImg) return;
+    setIsCopyingImg(true);
+    try {
+      const blob = dataURItoBlob(previewImage);
+      await navigator.clipboard.write([
+        new ClipboardItem({
+          [blob.type]: blob
+        })
+      ]);
+      // Reset copying state after a moment
+      setTimeout(() => setIsCopyingImg(false), 2000);
+    } catch (err) {
+      console.error("Failed to copy image to clipboard", err);
+      setIsCopyingImg(false);
+      alert(language === 'zh' ? '复制失败，请尝试“保存图片”' : 'Copy failed, please try "Save Image"');
+    }
   };
 
   // Dynamic Background Color based on collection
@@ -231,10 +264,25 @@ export const RandomReview: React.FC = () => {
 
              <div className="p-4 border-t border-slate-100 dark:border-slate-700 bg-white dark:bg-slate-800 flex gap-3">
                <button
-                 onClick={() => setShowPreview(false)}
-                 className="flex-1 py-3 rounded-xl text-slate-600 dark:text-slate-300 font-bold text-sm hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors"
+                 onClick={handleCopyImage}
+                 disabled={isCopyingImg}
+                 className={`flex-1 py-3 rounded-xl font-bold text-sm transition-all flex items-center justify-center gap-2 ${
+                    isCopyingImg 
+                      ? 'bg-green-50 text-green-600 dark:bg-green-900/20 dark:text-green-400' 
+                      : 'bg-slate-100 hover:bg-slate-200 text-slate-700 dark:bg-slate-700 dark:text-slate-200 dark:hover:bg-slate-600'
+                 }`}
                >
-                 {language === 'zh' ? '取消' : 'Cancel'}
+                 {isCopyingImg ? (
+                   <>
+                    <ICONS.Check size={18} />
+                    {language === 'zh' ? '已复制！' : 'Copied!'}
+                   </>
+                 ) : (
+                   <>
+                    <ICONS.Copy size={18} />
+                    {language === 'zh' ? '复制图片' : 'Copy Image'}
+                   </>
+                 )}
                </button>
                <button
                  onClick={handleSaveImage}
@@ -363,7 +411,7 @@ export const RandomReview: React.FC = () => {
                 }
               }}
               className="w-14 h-14 flex items-center justify-center rounded-full bg-white dark:bg-slate-800 text-slate-400 hover:text-blue-500 dark:hover:text-blue-400 shadow-lg shadow-slate-200/50 dark:shadow-black/20 border border-slate-100 dark:border-slate-700 transition-all hover:-translate-y-1 active:scale-95 group"
-              title={language === 'zh' ? '复制' : 'Copy'}
+              title={language === 'zh' ? '复制文字' : 'Copy Text'}
             >
               <ICONS.Copy size={20} className="group-hover:scale-110 transition-transform" />
             </button>
