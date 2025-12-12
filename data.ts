@@ -22,7 +22,7 @@ export const COLLECTIONS: Collection[] = [
     author: 'Steve Jobs',
     coverColor: 'bg-zinc-800',
     filePath: '/cards/entrepreneur/steve-jobs.txt',
-    count: 30
+    count: 50
   },
   {
     id: 'paul-graham',
