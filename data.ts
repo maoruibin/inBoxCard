@@ -169,6 +169,17 @@ export const COLLECTIONS: Collection[] = [
     filePath: '/cards/philosophy/zen.txt',
     count: 50
   },
+  {
+    id: 'seneca',
+    name: '塞内卡：斯多葛的智慧',
+    nameEn: 'Seneca',
+    description: '古罗马斯多葛派哲学家的道德书简与人生智慧。',
+    category: CategoryId.PHILOSOPHY,
+    author: 'Seneca',
+    coverColor: 'bg-slate-600',
+    filePath: '/cards/philosophy/seneca.txt',
+    count: 50
+  },
 
   // --- 文学与经典 (LITERATURE) ---
   {
